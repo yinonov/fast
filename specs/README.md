@@ -7,6 +7,7 @@ Here you'll find specifications for custom elements and other library features.
 ## Web Component Specifications
 | Component | Completed |
 | :--------- | ---------: |
+| [Accordian](./accordian.md) | -- |
 | [Anchored Region](../packages/web-components/fast-components/src/anchored-region/anchored-region.spec.md) | :white_check_mark: |
 | [Badge](../packages/web-components/fast-components/src/badge/badge.spec.md) | :white_check_mark: |
 | [Card](../packages/web-components/fast-components/src/card/card.spec.md) | :white_check_mark: |

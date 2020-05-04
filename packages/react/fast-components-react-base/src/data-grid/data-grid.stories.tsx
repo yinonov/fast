@@ -218,6 +218,19 @@ storiesOf("Data Grid", module)
             virtualize={true}
         />
     ))
+    .add("Initially visible row", () => (
+        <DataGrid
+            style={{
+                height: "300px",
+            }}
+            dataRowKey="recordId"
+            gridData={getDataSet(100)}
+            itemHeight={100}
+            columnDefinitions={columnDefinitions}
+            defaultFocusRowKey="id-50"
+            defaultFocusColumnKey="image"
+        />
+    ))
     .add("Empty grid", () => (
         <DataGrid
             style={{

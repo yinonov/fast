@@ -14,6 +14,7 @@ export * from "./carousel";
 export * from "./checkbox";
 export * from "./context-menu";
 export * from "./context-menu-item";
+export * from "./css-modules";
 export * from "./dialog";
 export * from "./divider";
 export * from "./flipper";

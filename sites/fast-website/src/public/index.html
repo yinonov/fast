@@ -82,8 +82,55 @@
 
         <!-- documentation:start -->
         <section class="section">
-          <div class="section-component">
-            Documentation components
+          <div class="section-component features">
+						<!-- Documentation components -->
+						<fast-feature-card>
+								<slot slot="featureId">01</slot>
+								<slot slot="heading">Composition</slot>
+								<slot slot="description">Create new component compositions by nesting, styling base components, and passing unhandled props. The combinations are endless.</slot>
+						</fast-feature-card>
+						<fast-feature-card>
+								<slot slot="featureId">02</slot>
+								<slot slot="heading">Design Systems</slot>
+								<slot slot="description">Use Fluent by default or customize design system properties to make it your own. Or, create your own design system to use with FAST components.</slot>
+						</fast-feature-card>
+						<fast-feature-card>
+								<slot slot="featureId">03</slot>
+								<slot slot="heading">Technology</slot>
+								<slot slot="description">Out of the box, FAST components are built on React, but you can build components on any modern framework using the FAST system.</slot>
+						</fast-feature-card>
+						<fast-feature-card>
+								<slot slot="featureId">04</slot>
+								<slot slot="heading">Web Standards</slot>
+								<slot slot="description">All FAST components follow WCAG 2.1, are W3C spec-compliant and use the W3C interaction models when available.</slot>
+						</fast-feature-card>
+						<fast-feature-card>
+								<slot slot="featureId">05</slot>
+								<slot slot="heading">Animation</slot>
+								<slot slot="description">Design sophisticated animation sequences with the animation library, an interface for the Web Animations API.</slot>
+						</fast-feature-card>
+						<fast-feature-card>
+								<slot slot="featureId">06</slot>
+								<slot slot="heading">Colors</slot>
+								<slot slot="description">Create color palettes, extract colors from images, and handle other color operations using our color library.</slot>
+						</fast-feature-card>
+						<fast-feature-card>
+								<slot slot="featureId">07</slot>
+								<slot slot="heading">Layout / Grid</slot>
+								<slot slot="description">Build layouts such as a 12 column grid for content or an application grid with resizable panels.</slot>
+						</fast-feature-card>
+						<fast-feature-card>
+								<slot slot="featureId">08</slot>
+								<slot slot="heading">Other</slot>
+								<slot slot="description">Leverage a toolkit of general utilities such as keyboarding, Right-To-Left (RTL), number, and string manipulation.</slot>
+						</fast-feature-card>
+						<!-- <fast-feature-card>
+								<slot slot="featureId">number</slot>
+								<slot slot="heading">FeatureHeading</slot>
+								<slot slot="description">FeatureDescription</slot>
+								<slot slot="anchor">github</slot>
+								<slot slot="anchor">documentation</slot>
+						</fast-feature-card> -->
           </div>
         </section>
         <!-- documentation:end -->

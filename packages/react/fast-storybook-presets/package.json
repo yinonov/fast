@@ -25,7 +25,7 @@
     "watch": "tsc -p ./tsconfig.json -w --preserveWatchOutput"
   },
   "dependencies": {
-    "@microsoft/fast-components-styles-msft": "^4.28.6",
+    "@microsoft/fast-components-styles-msft": "^4.28.7-cssmod.0",
     "@microsoft/fast-storybook-design-system-addon": "^1.2.31",
     "@storybook/addon-a11y": "^5.1.9",
     "@storybook/addon-actions": "^5.1.9",
@@ -35,7 +35,7 @@
     "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "@microsoft/fast-jss-manager-react": "^4.3.5",
+    "@microsoft/fast-jss-manager-react": "^4.6.5-cssmod.0",
     "@storybook/react": "^5.1.3",
     "react": "^16.6.0"
   },

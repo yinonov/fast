@@ -38,14 +38,14 @@ body {
 
 /* This creates the blur and background color changes on hover */
 /* start */
-.section-component:hover fast-hover-card{
+.section-component:hover fast-content-card{
   filter: blur(2px);
 }
 
-.section-component:hover fast-hover-card:hover{
-  background: linear-gradient(349.8deg, rgba(143, 68, 95, 0.3) 20.91%, rgba(148, 81, 73, 0.3) 99.75%);;
+.section-component:hover fast-content-card:hover{
+  /* background: linear-gradient(349.8deg, rgba(143, 68, 95, 0.3) 20.91%, rgba(148, 81, 73, 0.3) 99.75%); */
   box-shadow: 0px 10px 44px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: var(--design-unit);
   filter: blur(0);
 }
 /* end */

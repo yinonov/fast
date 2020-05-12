@@ -2,7 +2,7 @@ import { css } from "@microsoft/fast-element";
 import { display } from "@microsoft/fast-components";
 
 export const ContentCardStyles = css`
-    ${display("block")} :host {
+    ${display("flex")} :host {
         contain: content;
         font-family: var(--body-font);
         box-sizing: border-box;
@@ -16,6 +16,12 @@ export const ContentCardStyles = css`
         background: transparent;
         padding: 0 calc(var(--design-unit) * 5px) calc(var(--design-unit) * 3px);
         text-align: left;
+        display: flex;
+        flex-direction: column;
+    }
+
+    fast-card ::slotted([slot="body"]) {
+        flex: 1 1 auto;
     }
 
     fast-card:hover .contentCard_footer__hoverVisible {

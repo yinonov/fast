@@ -17,6 +17,7 @@ body {
 }
 
 .section {
+  --card-width: 410px;
   grid-column: 2;
 }
 

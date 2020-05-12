@@ -9,8 +9,7 @@ import {
 } from "../../data/framework.data";
 
 export class ContentCardContainer extends FASTElement {
-    @attr community: boolean = false;
-    @attr framework: boolean = false;
+    @attr section: string;
 
     communityCardList: CommunityContentCard[] = communityContentCardList;
     frameworkCardList: FrameworkContentCard[] = frameworkContentCardList;

@@ -2,11 +2,9 @@ import { html, when, repeat } from "@microsoft/fast-element";
 import { ContentCardContainer } from "./content-card-container";
 import { ContentCard } from "../content-card";
 
-export const ContentCardContainerTemplate = html<ContentCardContainer>` <div
-    class="section-component"
->
+export const ContentCardContainerTemplate = html<ContentCardContainer>`
     ${when(
-        x => x.framework,
+        x => x.section === "framework",
         html<ContentCardContainer>`
             ${repeat(
                 x => x.frameworkCardList,
@@ -31,7 +29,7 @@ export const ContentCardContainerTemplate = html<ContentCardContainer>` <div
         `
     )}
     ${when(
-        x => x.community,
+        x => x.section === "community",
         html<ContentCardContainer>`
             ${repeat(
                 x => x.communityCardList,
@@ -51,4 +49,4 @@ export const ContentCardContainerTemplate = html<ContentCardContainer>` <div
             )}
         `
     )}
-</div>`;
+`;

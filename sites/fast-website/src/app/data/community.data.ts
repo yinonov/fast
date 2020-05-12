@@ -1,5 +1,5 @@
 export interface CommunityContentCard {
-    iconSource: string;
+    iconSrc: string;
     iconAlt: string;
     header: string;
     body: string;
@@ -9,7 +9,7 @@ export interface CommunityContentCard {
 
 export const communityContentCardList: CommunityContentCard[] = [
     {
-        iconSource: "https://via.placeholder.com/16",
+        iconSrc: "https://via.placeholder.com/16",
         iconAlt: "Discord",
         header: "Discord",
         body:
@@ -18,7 +18,7 @@ export const communityContentCardList: CommunityContentCard[] = [
         actionLink: "#",
     },
     {
-        iconSource: "https://via.placeholder.com/16",
+        iconSrc: "https://via.placeholder.com/16",
         iconAlt: "Twitter",
         header: "Twitter",
         body:
@@ -27,7 +27,7 @@ export const communityContentCardList: CommunityContentCard[] = [
         actionLink: "#",
     },
     {
-        iconSource: "https://via.placeholder.com/16",
+        iconSrc: "https://via.placeholder.com/16",
         iconAlt: "Github",
         header: "Github",
         body:

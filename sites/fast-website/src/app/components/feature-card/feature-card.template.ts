@@ -8,7 +8,7 @@ export const FeatureCardTemplate = html<FeatureCard>`
             <h4><slot name="heading">heading</slot></h4>
         </section>
         <section class="content">
-            <p><slot name="description">description</slot></p>
+            <slot></slot>
             <div>
                 <fast-anchor class="link" href="#" appearance="lightweight"
                     >View Github</fast-anchor

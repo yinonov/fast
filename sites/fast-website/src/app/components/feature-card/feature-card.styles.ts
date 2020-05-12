@@ -34,7 +34,7 @@ export const FeatureCardStyles = css`
         margin: 0 0 10px 0;
     }
 
-    p {
+    ::slotted(p) {
         margin: 0;
     }
 

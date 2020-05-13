@@ -3,7 +3,6 @@ import { display } from "@microsoft/fast-components";
 
 export const CardSectionStyles = css`
     :host {
-        --text-color: white;
         --text-font: Arial, Roboto, sans-serif;
         --flow: column;
         --max-width: 1240px;

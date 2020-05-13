@@ -7,9 +7,11 @@ export const XCardStyles = css`
         color: var(--text-color);
         font-family: var(--text-font);
         box-sizing: border-box;
-        padding: 20px;
+        margin: 10px 20px;
+        padding: 10px 0;
         box-shadow: unset;
-        height: 140px;
+        height: 120px;
+        border-top: 1px solid currentcolor;
     }
 
     :host(:hover) ::slotted(fast-anchor) {
@@ -22,16 +24,6 @@ export const XCardStyles = css`
 
     header {
         flex: 1;
-    }
-
-    main::before {
-        content: "";
-        background-color: white;
-        position: fixed;
-        height: 1px;
-        width: 90%;
-        left: 20px;
-        top: 0;
     }
 
     main {
@@ -47,7 +39,6 @@ export const XCardStyles = css`
     }
 
     ::slotted(h5) {
-        font-size: 14px;
         margin: 0 0 10px 0;
     }
 

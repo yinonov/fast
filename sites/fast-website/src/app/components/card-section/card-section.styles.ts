@@ -22,7 +22,6 @@ export const CardSectionStyles = css`
         grid-auto-flow: var(--flow);
         grid-column-gap: 20px;
         max-width: var(--max-width);
-        background-color: #3a3a3a;
     }
 
     :host(:hover) ::slotted(x-card) {

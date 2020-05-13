@@ -65,27 +65,3 @@ body {
   line-height: 56px;
   margin: 0;
 }
-
-.features {
-	margin: 0 auto;
-	display: grid;
-	grid-template-rows: repeat(4, min-content);
-	grid-column-gap: 20px;
-	background: var(--background-color);
-	background-color: rgba(0, 0, 0, 0.7);
-	max-width: 1240px;
-}
-
-.features:hover fast-feature-card {
-	filter: blur(2px);
-}
-
-.features fast-feature-card:hover {
-	filter: blur(0);
-}
-
-@media screen and (min-width: 900px) {
-	.features {
-			grid-auto-flow: column;
-	}
-}

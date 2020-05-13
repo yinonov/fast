@@ -80,60 +80,167 @@
           </div>
         </section>
 
-        <!-- documentation:start -->
-        <section class="section">
-          <div class="section-component features">
-						<!-- Documentation components -->
-						<fast-feature-card>
-								<slot slot="featureId">01</slot>
-								<slot slot="heading">Composition</slot>
-								<p>Create new component compositions by nesting, styling base components, and passing unhandled props. The combinations are endless.</p>
-						</fast-feature-card>
-						<fast-feature-card>
-								<slot slot="featureId">02</slot>
-								<slot slot="heading">Design Systems</slot>
-								<p>Use Fluent by default or customize design system properties to make it your own. Or, create your own design system to use with FAST components.</p>
-						</fast-feature-card>
-						<fast-feature-card>
-								<slot slot="featureId">03</slot>
-								<slot slot="heading">Technology</slot>
-								<p>Out of the box, FAST components are built on React, but you can build components on any modern framework using the FAST system.</p>
-						</fast-feature-card>
-						<fast-feature-card>
-								<slot slot="featureId">04</slot>
-								<slot slot="heading">Web Standards</slot>
-								<p>All FAST components follow WCAG 2.1, are W3C spec-compliant and use the W3C interaction models when available.</p>
-						</fast-feature-card>
-						<fast-feature-card>
-								<slot slot="featureId">05</slot>
-								<slot slot="heading">Animation</slot>
-								<p>Design sophisticated animation sequences with the animation library, an interface for the Web Animations API.</p>
-						</fast-feature-card>
-						<fast-feature-card>
-								<slot slot="featureId">06</slot>
-								<slot slot="heading">Colors</slot>
-								<p>Create color palettes, extract colors from images, and handle other color operations using our color library.</p>
-						</fast-feature-card>
-						<fast-feature-card>
-								<slot slot="featureId">07</slot>
-								<slot slot="heading">Layout / Grid</slot>
-								<p>Build layouts such as a 12 column grid for content or an application grid with resizable panels.</p>
-						</fast-feature-card>
-						<fast-feature-card>
-								<slot slot="featureId">08</slot>
-								<slot slot="heading">Other</slot>
-								<p>Leverage a toolkit of general utilities such as keyboarding, Right-To-Left (RTL), number, and string manipulation.</p>
-						</fast-feature-card>
-						<!-- <fast-feature-card>
-								<slot slot="featureId">number</slot>
-								<slot slot="heading">FeatureHeading</slot>
-								<slot>FeatureDescription</slot>
-								<slot slot="anchor">github</slot>
-								<slot slot="anchor">documentation</slot>
-						</fast-feature-card> -->
-          </div>
-        </section>
-        <!-- documentation:end -->
+                <!-- documentation:start -->
+                <section class="section">
+									<div class="section-component features">
+											<card-section>
+													<x-card>
+															<h5 slot="header">01</h5>
+															<h4 slot="header">Composition</h4>
+															<p>Create new component compositions by nesting, styling base components, and passing unhandled props. The combinations are endless.</p>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>View Github</fast-anchor
+															>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>Read Documentation</fast-anchor
+															>
+													</x-card>
+													<x-card>
+															<h5 slot="header">02</h5>
+															<h4 slot="header">Design Systems</h4>
+															<p>Use Fluent by default or customize design system properties to make it your own. Or, create your own design system to use with FAST components.</p>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>View Github</fast-anchor
+															>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>Read Documentation</fast-anchor
+															>
+													</x-card>
+													<x-card>
+															<h5 slot="header">03</h5>
+															<h4 slot="header">Technology</h4>
+															<p>Out of the box, FAST components are built on React, but you can build components on any modern framework using the FAST system.</p>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>View Github</fast-anchor
+															>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>Read Documentation</fast-anchor
+															>
+													</x-card>
+													<x-card>
+															<h5 slot="header">04</h5>
+															<h4 slot="header">Web Standards</h4>
+															<p>All FAST components follow WCAG 2.1, are W3C spec-compliant and use the W3C interaction models when available.</p>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>View Github</fast-anchor
+															>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>Read Documentation</fast-anchor
+															>
+													</x-card>
+													<x-card>
+															<h5 slot="header">05</h5>
+															<h4 slot="header">Animation</h4>
+															<p>Design sophisticated animation sequences with the animation library, an interface for the Web Animations API.</p>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>View Github</fast-anchor
+															>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>Read Documentation</fast-anchor
+															>
+													</x-card>
+													<x-card>
+															<h5 slot="header">06</h5>
+															<h4 slot="header">Colors</h4>
+															<p>Create color palettes, extract colors from images, and handle other color operations using our color library.</p>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>View Github</fast-anchor
+															>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>Read Documentation</fast-anchor
+															>
+													</x-card>
+													<x-card>
+															<h5 slot="header">07</h5>
+															<h4 slot="header">Layout / Grid</h4>
+															<p>Build layouts such as a 12 column grid for content or an application grid with resizable panels.</p>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>View Github</fast-anchor
+															>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>Read Documentation</fast-anchor
+															>
+													</x-card>
+													<x-card>
+															<h5 slot="header">08</h5>
+															<h4 slot="header">Other</h4>
+															<p>Leverage a toolkit of general utilities such as keyboarding, Right-To-Left (RTL), number, and string manipulation.</p>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>View Github</fast-anchor
+															>
+															<fast-anchor
+																	slot="links"
+																	class="link"
+																	href="#"
+																	appearance="lightweight"
+																	>Read Documentation</fast-anchor
+															>
+													</x-card>
+											</card-section>
+                        <!-- Documentation components -->
+                    </div>
+                </section>
+                <!-- documentation:end -->
 
         <section class="section">
           <div class="section-content">

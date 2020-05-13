@@ -24,6 +24,16 @@ export const XCardStyles = css`
         flex: 1;
     }
 
+    main::before {
+        content: "";
+        background-color: white;
+        position: fixed;
+        height: 1px;
+        width: 90%;
+        left: 20px;
+        top: 0;
+    }
+
     main {
         display: flex;
         flex-direction: column;

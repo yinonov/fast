@@ -4,7 +4,7 @@ import { display } from "@microsoft/fast-components";
 export const CardSectionStyles = css`
     :host {
         --text-color: white;
-        --text-font: "Open-Sans";
+        --text-font: Arial, Roboto, sans-serif;
         --flow: column;
         --max-width: 1240px;
     }
@@ -17,7 +17,6 @@ export const CardSectionStyles = css`
     }
 
     ${display("grid")} :host {
-        margin: 0 auto;
         grid-template-rows: repeat(4, min-content);
         grid-auto-flow: var(--flow);
         grid-column-gap: 20px;

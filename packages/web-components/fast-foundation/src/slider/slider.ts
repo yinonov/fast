@@ -192,12 +192,12 @@ export class Slider extends FormAssociated<HTMLInputElement>
                 : (Number(this.value) / (Number(this.max) - Number(this.min))) * 100;
         if (this.orientation === Orientation.horizontal) {
             this.position = this.isDragging
-                ? `right: ${percentage}%; transition: all 0.1s ease;`
-                : `right: ${percentage}%; transition: all 0.2s ease;`;
+                ? `right: ${percentage}%; transition: right 0.1s ease;`
+                : `right: ${percentage}%; transition: right 0.2s ease;`;
         } else {
             this.position = this.isDragging
-                ? `bottom: ${percentage}%; transition: all 0.1s ease;`
-                : `bottom: ${percentage}%; transition: all 0.2s ease;`;
+                ? `bottom: ${percentage}%; transition: bottom 0.1s ease;`
+                : `bottom: ${percentage}%; transition: bottom 0.2s ease;`;
         }
     };
 

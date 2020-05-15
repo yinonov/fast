@@ -104,12 +104,8 @@ export const FastFrameStyles = css`
         grid-column: 2;
     }
 
-    .icon-cut {
-        fill: var(--accent-foreground-cut-rest);
-    }
-
     .icon {
-        fill: var(--neutral-foreground-rest);
+        fill: currentColor;
     }
 
     .sample-control {

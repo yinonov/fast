@@ -12,10 +12,8 @@ export const ContentPlacementContainerTemplate = html<ContentPlacementContainer>
                         <h3>${x => x.header}</h3>
                         <p slot="body">${x => x.body}</p>
                         <span slot="compatibility"
-                            ><img
-                                src=${x => x.compatibilityImageSrc}
-                                alt=${x => x.compatibilityImageAlt}
-                            />
+                            >
+                            ${x => x.compatibilityIcon}
                             ${x => x.compatibilityText}</span
                         >
                         <fast-anchor

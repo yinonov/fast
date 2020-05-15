@@ -1,9 +1,10 @@
+import ContextIcon from "svg/icon-context.svg";
+
 export interface FrameworkContentPlacementData {
     actionLink?: string;
     actionText?: string;
     body?: string;
-    compatibilityImageAlt?: string;
-    compatibilityImageSrc?: string;
+    compatibilityIcon?: string;
     compatibilityText?: string;
     divider?: boolean;
     header?: string;
@@ -12,8 +13,7 @@ export interface FrameworkContentPlacementData {
 const frameworkContentPlacementReusableData: FrameworkContentPlacementData = {
     actionLink: "#",
     actionText: "Learn More",
-    compatibilityImageAlt: "Smiley face",
-    compatibilityImageSrc: "https://via.placeholder.com/16",
+    compatibilityIcon: ContextIcon,
     compatibilityText: "No issues!",
 };
 

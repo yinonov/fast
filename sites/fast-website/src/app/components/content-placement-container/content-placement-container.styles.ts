@@ -28,6 +28,6 @@ export const ContentPlacementContainerStyles = css`
     }
 
     .icon-smiley {
-        fill:none;
+        fill: none;
     }
 `;

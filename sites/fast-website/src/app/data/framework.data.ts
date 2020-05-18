@@ -1,4 +1,4 @@
-import ContextIcon from "svg/icon-context.svg";
+import SmileyIcon from "svg/icon-smiley.svg";
 
 export interface FrameworkContentPlacementData {
     actionLink?: string;
@@ -13,7 +13,7 @@ export interface FrameworkContentPlacementData {
 const frameworkContentPlacementReusableData: FrameworkContentPlacementData = {
     actionLink: "#",
     actionText: "Learn More",
-    compatibilityIcon: ContextIcon,
+    compatibilityIcon: `${SmileyIcon} No issues!`,
     compatibilityText: "No issues!",
 };
 

@@ -23,4 +23,11 @@ export const ContentPlacementContainerStyles = css`
         filter: blur(0);
     }
     /* end */
+    .icon {
+        fill: currentColor;
+    }
+
+    .icon-smiley {
+        fill:none;
+    }
 `;

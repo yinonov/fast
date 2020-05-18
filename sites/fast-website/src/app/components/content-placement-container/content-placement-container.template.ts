@@ -11,10 +11,9 @@ export const ContentPlacementContainerTemplate = html<ContentPlacementContainer>
                     html`<site-content-placement divider>
                         <h3>${x => x.header}</h3>
                         <p slot="body">${x => x.body}</p>
-                        <span slot="compatibility"
+                        <span slot="compatibility" :innerHTML=${x => x.compatibilityIcon}
                             >
-                            ${x => x.compatibilityIcon}
-                            ${x => x.compatibilityText}</span
+                            </span
                         >
                         <fast-anchor
                             slot="action"
@@ -32,8 +31,7 @@ export const ContentPlacementContainerTemplate = html<ContentPlacementContainer>
                 ${repeat(
                     x => x.communityContentPlacementData,
                     html`<site-content-placement>
-                        <div slot="icon">
-                            <img src=${x => x.iconSrc} alt=${x => x.iconAlt} />
+                        <div slot="icon" :innerHTML=${x => x.icon}>
                         </div>
                         <h3>${x => x.header}</h3>
                         <p slot="body">${x => x.body}</p>

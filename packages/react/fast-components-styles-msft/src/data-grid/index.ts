@@ -51,14 +51,9 @@ const styles: ComponentStyles<DataGridClassNameContract, DesignSystem> = {
         ...ellipsis(),
         "line-height": "26px",
     },
-    dataGrid_viewport: {
-        height: "100%",
-        width: "100%",
-        "overflow-y": "auto",
-        "overflow-x": "hidden",
-    },
-    dataGrid_gridContainer: {},
-    dataGrid__isScrolling: {},
+    dataGrid_scrollingPanel: {},
+    dataGrid_scrollingPanel_items: {},
+    dataGrid_scrollingPanel__scrollable: {},
     dataGrid_row: {
         padding: "1px 0",
         "box-sizing": "border-box",

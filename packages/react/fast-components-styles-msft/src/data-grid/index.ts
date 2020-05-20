@@ -13,7 +13,7 @@ import { DesignSystem } from "../design-system";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../utilities/border";
 import { outlineWidth } from "../utilities/design-system";
 import {
-    HighContrastColor,
+    highContrastOutlineFocus,
     highContrastForeground,
     highContrastOptOutProperty,
     highContrastSelector,
@@ -82,11 +82,8 @@ const styles: ComponentStyles<DataGridClassNameContract, DesignSystem> = {
         ...applyFocusPlaceholderBorder(),
         ...applyFocusVisible<DesignSystem>({
             "border-color": neutralFocus,
-            [highContrastSelector]: {
-                "border-color": HighContrastColor.selectedBackground,
-            },
+            ...highContrastOutlineFocus,
         }),
-        "line-height": "26px",
     },
 };
 

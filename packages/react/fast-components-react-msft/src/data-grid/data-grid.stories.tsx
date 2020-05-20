@@ -25,10 +25,6 @@ function imageCellFn(
             ref={rootElement}
             style={{
                 gridColumn: props.columnIndex,
-                borderWidth: "1",
-                borderColor: "black",
-                background: "white",
-                borderStyle: "solid",
             }}
         >
             <img
@@ -59,10 +55,6 @@ function recordIdCellFn(
             ref={rootElement}
             style={{
                 gridColumn: props.columnIndex,
-                borderWidth: "1",
-                borderColor: "black",
-                background: "grey",
-                borderStyle: "solid",
             }}
         >
             <img

@@ -3,17 +3,52 @@
  */
 export default {
     $schema: "http://json-schema.org/schema#",
-    title: "Tree view",
-    description: "A tree view schema definition.",
+    title: "Data grid",
+    description: "A data grid component's schema definition.",
     type: "object",
-    id: "@microsoft/fast-components-react-msft/tree-view",
-    formPluginId: "@microsoft/fast-components-react-msft/tree-view",
-    properties: {},
-    reactProperties: {
-        children: {
-            title: "Child nodes",
-            type: "children",
-            ids: ["@microsoft/fast-components-react-msft/tree-view-item"],
+    id: "@microsoft/fast-components-react-msft/data-grid",
+    formPluginId: "@microsoft/fast-components-react-msft/data-grid",
+    properties: {
+        rows: {
+            title: "Array of data (objects by row) to be rendered",
+            type: "array",
+            items: {
+                title: "Row data",
+                type: "object",
+            },
+        },
+        stableRangeEndIndex: {
+            title: "Stable range end index",
+            type: "number",
+        },
+        pageSize: {
+            title: "Data page size",
+            type: "number",
+        },
+        virtualizeItems: {
+            title: "Virtualize items",
+            type: "boolean",
+        },
+        dataRowKey: {
+            title: "Data row key",
+            type: "string",
+        },
+        columns: {
+            title: "Array of columns",
+            type: "array",
+        },
+        rowHeight: {
+            title: "Item height",
+            type: "number",
+        },
+        defaultFocusRowKey: {
+            title: "Default focus row key",
+            type: "string",
+        },
+        defaultFocusColumnKey: {
+            title: "Default focus column key",
+            type: "string",
         },
     },
+    required: ["rows", "dataRowKey", "columns"],
 };

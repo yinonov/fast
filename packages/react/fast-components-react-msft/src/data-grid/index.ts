@@ -1,18 +1,18 @@
 import React from "react";
 import {
     DataGrid as BaseDataGrid,
-    DataGridCellProps,
-    DataGridCellRenderConfig,
-    DataGridColumn,
     DataGridHandledProps as BaseDataGridHandledProps,
     DataGridProps as BaseDataGridProps,
+    DataGridCellProps,
+    DataGridCellRenderConfig,
     DataGridClassNameContract,
+    DataGridColumn,
     DataGridManagedClasses,
     DataGridRowHeightCallbackParams,
     DataGridUnhandledProps,
 } from "@microsoft/fast-components-react-base";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { DesignSystem, DataGridStyles } from "@microsoft/fast-components-styles-msft";
+import { DataGridStyles, DesignSystem } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
 import dataGridSchema from "./data-grid.schema";
 

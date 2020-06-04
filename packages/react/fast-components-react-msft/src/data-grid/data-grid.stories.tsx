@@ -166,15 +166,23 @@ class DataGridTest extends React.Component<DataGridTestProps, DataGridTestState>
 }
 
 storiesOf("Data Grid", module)
-    .add("Detail View", () => (
+    .add("Default", () => (
         <DataGrid
             style={{
                 height: "300px",
             }}
             dataRowKey="recordId"
             rows={getDataSet(100)}
-            rowHeight={100}
-            columns={columns}
+        />
+    ))
+    .add("Default virtualized", () => (
+        <DataGrid
+            style={{
+                height: "300px",
+            }}
+            dataRowKey="recordId"
+            rows={getDataSet(100)}
+            virtualize={true}
         />
     ))
     .add("Initially visible row", () => (
@@ -190,6 +198,20 @@ storiesOf("Data Grid", module)
             defaultFocusColumnKey="image"
         />
     ))
+    .add("Initially visible row virtualized", () => (
+        <DataGrid
+            style={{
+                height: "300px",
+            }}
+            dataRowKey="recordId"
+            rows={getDataSet(100)}
+            rowHeight={100}
+            columns={columns}
+            defaultFocusRowKey="id-50"
+            defaultFocusColumnKey="image"
+            virtualize={true}
+        />
+    ))
     .add("Empty grid", () => (
         <DataGrid
             style={{
@@ -201,16 +223,16 @@ storiesOf("Data Grid", module)
             columns={columns}
         />
     ))
-    .add("Controlled Height and Width", () => (
+    .add("Empty grid virtualized", () => (
         <DataGrid
             style={{
                 height: "300px",
-                width: "500px",
             }}
             dataRowKey="recordId"
-            rows={getDataSet(100)}
+            rows={[]}
             rowHeight={100}
             columns={columns}
+            virtualize={true}
         />
     ))
     .add("Toggle smaller data set", () => (
@@ -220,10 +242,24 @@ storiesOf("Data Grid", module)
                 width: "500px",
             }}
             dataRowKey="recordId"
-            primaryDataSet={getDataSet(10000)}
-            secondaryDataSet={getDataSet(2000)}
+            primaryDataSet={getDataSet(100)}
+            secondaryDataSet={getDataSet(50)}
             rowHeight={100}
             columns={columns}
+        />
+    ))
+    .add("Toggle smaller data set virtualized", () => (
+        <DataGridTest
+            style={{
+                height: "300px",
+                width: "500px",
+            }}
+            dataRowKey="recordId"
+            primaryDataSet={getDataSet(100)}
+            secondaryDataSet={getDataSet(50)}
+            rowHeight={100}
+            columns={columns}
+            virtualize={true}
         />
     ))
     .add("Toggle empty data set", () => (
@@ -239,7 +275,35 @@ storiesOf("Data Grid", module)
             columns={columns}
         />
     ))
+    .add("Toggle empty data set virtualized", () => (
+        <DataGridTest
+            style={{
+                height: "300px",
+                width: "500px",
+            }}
+            dataRowKey="recordId"
+            primaryDataSet={getDataSet(100)}
+            secondaryDataSet={getDataSet(0)}
+            rowHeight={100}
+            columns={columns}
+            virtualize={true}
+        />
+    ))
     .add("Variable height rows", () => (
+        <DataGrid
+            style={{
+                height: "400px",
+                width: "800px",
+            }}
+            dataRowKey="recordId"
+            rows={getDataSet(100)}
+            rowHeight={100}
+            columns={columns}
+            rowHeightCallback={getRowHeight}
+            virtualize={true}
+        />
+    ))
+    .add("Large data set", () => (
         <DataGrid
             style={{
                 height: "400px",
@@ -250,5 +314,6 @@ storiesOf("Data Grid", module)
             rowHeight={100}
             columns={columns}
             rowHeightCallback={getRowHeight}
+            virtualize={true}
         />
     ));

@@ -5,7 +5,8 @@
     "sites/fast-component-explorer",
     "sites/fast-creator",
     "sites/fast-tooling-examples",
-    "sites/fast-website"
+    "sites/fast-website",
+    "sites/test"
   ],
   "version": "independent",
   "npmClient": "yarn",

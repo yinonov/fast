@@ -51,6 +51,7 @@ abstract class Editor<P, S extends EditorState> extends React.Component<P, S> {
     public navigationClassNames: string = "navigation";
     public canvasClassNames: string = "canvas";
     public menuBarClassNames: string = "menu-bar";
+    public matchMediaHighContrast: MediaQueryList;
     private adapter: MonacoAdapter;
     private monacoEditorModel: monaco.editor.ITextModel;
     private firstRun: boolean = true;
@@ -120,7 +121,7 @@ abstract class Editor<P, S extends EditorState> extends React.Component<P, S> {
                 language: "html",
                 formatOnPaste: true,
                 lineNumbers: "off",
-                theme: "vs-dark",
+                theme: this.state.highContrast ? "hc-black" : "vs-dark",
                 wordWrap: "on",
                 wordWrapColumn: 80,
                 wordWrapMinified: true,
@@ -182,6 +183,21 @@ abstract class Editor<P, S extends EditorState> extends React.Component<P, S> {
             this.state.mobileFormVisible || this.state.mobileNavigationVisible,
         ]);
     }
+
+    public handleUpdateHighContrast = (e: MediaQueryListEvent): void => {
+        this.setState(
+            {
+                highContrast: e.matches,
+            },
+            () => {
+                if (this.editor) {
+                    this.editor.updateOptions({
+                        theme: e.matches ? "hc-black" : "vs-dark",
+                    });
+                }
+            }
+        );
+    };
 
     public handleCanvasOverlayTrigger = (): void => {
         this.setState({

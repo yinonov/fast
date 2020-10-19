@@ -111,6 +111,11 @@ class Creator extends Editor<{}, CreatorState> {
         }
 
         window.onresize = rafThrottle(this.handleWindowResize);
+        this.matchMediaHighContrast = window.matchMedia("(-ms-high-contrast: active)");
+        this.matchMediaHighContrast.addEventListener(
+            "change",
+            this.handleUpdateHighContrast
+        );
 
         this.setupMonacoEditor(monaco);
 
@@ -138,6 +143,7 @@ class Creator extends Editor<{}, CreatorState> {
                 componentLinkedDataId,
             ],
             transparentBackground: false,
+            highContrast: false,
         };
     }
 
@@ -350,6 +356,12 @@ class Creator extends Editor<{}, CreatorState> {
     };
 
     public componentDidMount(): void {
+        if (this.matchMediaHighContrast.matches) {
+            this.handleUpdateHighContrast({
+                matches: this.matchMediaHighContrast.matches,
+            } as MediaQueryListEvent);
+        }
+
         this.setViewerToFullSize();
         this.updateMonacoEditor();
     }

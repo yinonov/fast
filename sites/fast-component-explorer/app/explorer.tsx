@@ -83,6 +83,12 @@ class Explorer extends Editor<ExplorerProps, ExplorerState> {
         window.onpopstate = this.handleWindowPopState;
         window.onresize = rafThrottle(this.handleWindowResize);
 
+        this.matchMediaHighContrast = window.matchMedia("(-ms-high-contrast: active)");
+        this.matchMediaHighContrast.addEventListener(
+            "change",
+            this.handleUpdateHighContrast
+        );
+
         this.setupMonacoEditor(monaco);
 
         this.state = {
@@ -102,6 +108,7 @@ class Explorer extends Editor<ExplorerProps, ExplorerState> {
             activePivotTab: "code",
             mobileFormVisible: false,
             mobileNavigationVisible: false,
+            highContrast: false,
         };
     }
 
@@ -228,6 +235,11 @@ class Explorer extends Editor<ExplorerProps, ExplorerState> {
     }
 
     public componentDidMount(): void {
+        if (this.matchMediaHighContrast.matches) {
+            this.handleUpdateHighContrast({
+                matches: this.matchMediaHighContrast.matches,
+            } as MediaQueryListEvent);
+        }
         this.setViewerToFullSize();
         this.updateMonacoEditor();
     }

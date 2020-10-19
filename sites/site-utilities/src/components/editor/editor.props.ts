@@ -13,4 +13,5 @@ export interface EditorState {
     direction: Direction;
     transparentBackground: boolean;
     previewReady: boolean;
+    highContrast: boolean;
 }

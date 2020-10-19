@@ -83,6 +83,11 @@ export interface ProjectFile {
      * Preview background transparency
      */
     transparentBackground: boolean;
+
+    /**
+     * The high contrast state
+     */
+    highContrast: boolean;
 }
 
 export type CreatorManagedClasses = ManagedClasses<{}>;

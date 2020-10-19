@@ -87,4 +87,9 @@ export interface ExplorerState extends EditorState {
      * The visibility of the mobile form pane
      */
     mobileFormVisible: boolean;
+
+    /**
+     * The high contrast state
+     */
+    highContrast: boolean;
 }

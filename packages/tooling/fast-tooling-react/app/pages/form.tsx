@@ -1,6 +1,11 @@
 import * as testConfigs from "./form/";
 import { AlignControl, Form } from "../../src";
-import { ControlConfig, StandardControlPlugin, TextAlignControl } from "../../src";
+import {
+    ControlConfig,
+    CSSControl,
+    StandardControlPlugin,
+    TextAlignControl,
+} from "../../src";
 import { FormProps } from "../../src/form/form.props";
 import {
     FormAttributeSettingsMappingToPropertyNames,
@@ -118,6 +123,12 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 id: testConfigs.customControl.schema.properties.align.formControlId,
                 control: (config: ControlConfig): React.ReactNode => {
                     return <AlignControl {...config} />;
+                },
+            }),
+            new StandardControlPlugin({
+                id: testConfigs.customControl.schema.properties.css.formControlId,
+                control: (config: ControlConfig): React.ReactNode => {
+                    return <CSSControl {...config} />;
                 },
             }),
         ];

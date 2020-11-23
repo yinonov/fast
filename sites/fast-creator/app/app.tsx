@@ -16,6 +16,11 @@ export default class App extends React.Component<{}, {}> {
                 <div>
                     <DesignSystemProvider designSystem={creatorDesignSystem}>
                         <Route component={Creator} exact={true} path="/" />
+                        <Route
+                            component={Creator}
+                            exact={true}
+                            path="/data-dictionary/:dataDictionary?"
+                        />
                     </DesignSystemProvider>
                     <Route component={Preview} exact={true} path="/preview" />
                 </div>

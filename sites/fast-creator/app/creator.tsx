@@ -11,6 +11,7 @@ import { classNames, Direction } from "@microsoft/fast-web-utilities";
 import React from "react";
 import {
     CustomMessage,
+    DataDictionary,
     MessageSystemType,
     SchemaDictionary,
 } from "@microsoft/fast-tooling";
@@ -104,6 +105,25 @@ class Creator extends Editor<{}, CreatorState> {
         super(props);
 
         const componentLinkedDataId: string = "root";
+        let dataDictionary: DataDictionary<unknown> = [
+            {
+                [componentLinkedDataId]: {
+                    schemaId: divTag,
+                    data: {},
+                },
+            },
+            componentLinkedDataId,
+        ];
+
+        if ((this.props as any).match.params.dataDictionary !== undefined) {
+            try {
+                dataDictionary = JSON.parse(
+                    decodeURIComponent((this.props as any).match.params.dataDictionary)
+                );
+            } catch (e) {
+                console.log("route could not be interpreted into a data dictionary");
+            }
+        }
 
         this.devices = this.getDevices();
 
@@ -129,15 +149,7 @@ class Creator extends Editor<{}, CreatorState> {
             devToolsVisible: true,
             mobileFormVisible: false,
             mobileNavigationVisible: false,
-            dataDictionary: [
-                {
-                    [componentLinkedDataId]: {
-                        schemaId: divTag,
-                        data: {},
-                    },
-                },
-                componentLinkedDataId,
-            ],
+            dataDictionary,
             transparentBackground: false,
         };
     }

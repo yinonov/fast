@@ -15,6 +15,7 @@ import { renderSyntaxControl } from "./control.css.utilities.syntax";
 import { renderValueControl } from "./control.css.utilities.value";
 import { renderPropertyControl } from "./control.css.utilities.property";
 import { properties } from "@microsoft/fast-tooling/dist/css-data";
+export { FASTOption, FASTSelect } from "@microsoft/fast-components";
 
 /**
  * Custom CSS reference definition
@@ -75,27 +76,31 @@ export class CSSRef extends React.Component<CSSRefProps, CSSRefState> {
 
         return (
             <div>
-                <select onChange={this.handleFormElementOnChange}>
-                    <option key={"init"} value={void 0}></option>
+                <fast-select
+                    events={{
+                        change: this.handleFormElementOnChange,
+                    }}
+                >
+                    <fast-option key={"init"} value={void 0}></fast-option>
                     {(this.props.syntax.ref as CSSPropertyRef[]).map(
                         (refItem: CSSPropertyRef, index: number) => {
                             if (typeof refItem.ref === "string") {
                                 // This should always be a string, but check in case
                                 return (
-                                    <option key={index} value={index}>
+                                    <fast-option key={index} value={`${index}`}>
                                         {refItem.ref}
-                                    </option>
+                                    </fast-option>
                                 );
                             }
 
                             return (
-                                <option key={index} value={index}>
+                                <fast-option key={index} value={`${index}`}>
                                     {refItem.type}
-                                </option>
+                                </fast-option>
                             );
                         }
                     )}
-                </select>
+                </fast-select>
                 {cssRef}
             </div>
         );

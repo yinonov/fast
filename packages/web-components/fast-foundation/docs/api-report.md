@@ -1379,6 +1379,23 @@ export enum TextFieldType {
 }
 
 // @public
+export class Toolbar extends FASTElement {
+    // (undocumented)
+    connectedCallback(): void;
+    // (undocumented)
+    disconnectedCallback(): void;
+    focus(): void;
+    // @internal (undocumented)
+    handleKeyDown(e: KeyboardEvent): void | boolean;
+    // @internal (undocumented)
+    items: HTMLSlotElement;
+    orientation: Orientation;
+    }
+
+// @public
+export const ToolbarTemplate: import("@microsoft/fast-element").ViewTemplate<Toolbar, any>;
+
+// @public
 export class Tooltip extends FASTElement {
     anchor: string;
     anchorElement: HTMLElement | null;

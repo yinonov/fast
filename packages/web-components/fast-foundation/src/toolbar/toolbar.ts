@@ -1,6 +1,6 @@
 import { attr, DOM, elements, FASTElement, observable } from "@microsoft/fast-element";
 import {
-    isHTMLElement,
+    Direction,
     keyCodeArrowDown,
     keyCodeArrowLeft,
     keyCodeArrowRight,
@@ -9,7 +9,9 @@ import {
     keyCodeHome,
     Orientation,
 } from "@microsoft/fast-web-utilities";
+import { getDirection } from "../utilities/direction";
 import { inRange } from "lodash-es";
+import tabbable from "tabbable";
 
 /**
  * An Toolbar Custom HTML Element.
@@ -17,20 +19,6 @@ import { inRange } from "lodash-es";
  * @public
  */
 export class Toolbar extends FASTElement {
-    private static focusableRoles: string[] = [
-        "button",
-        "checkbox",
-        "link",
-        "radio",
-        "searchbox",
-        "slider",
-        "spinbutton",
-        "switch",
-        "textbox",
-        "combobox",
-        "grid",
-    ];
-
     /**
      * Toolbar orientation
      *
@@ -54,7 +42,15 @@ export class Toolbar extends FASTElement {
         }
     }
 
+    /**
+     * The current set of toolbar items
+     */
     private toolbarItems: Element[];
+
+    /**
+     * Track the initial tab index settings of children
+     */
+    private initialItemTabIndexes: Map<Element, any> = new Map<Element, any>();
 
     /**
      * The index of the focusable element in the items array
@@ -62,9 +58,15 @@ export class Toolbar extends FASTElement {
      */
     private focusIndex: number = -1;
 
+    /**
+     * The index of the focusable element in the items array
+     * defaults to -1
+     */
+    private direction: Direction = Direction.ltr;
+
     public connectedCallback(): void {
-        this.toolbarItems = this.domChildren();
         super.connectedCallback();
+        this.direction = getDirection(this);
     }
 
     public disconnectedCallback(): void {
@@ -78,6 +80,10 @@ export class Toolbar extends FASTElement {
      * @public
      */
     public focus(): void {
+        if (this.initialItemTabIndexes.entries.length === 0) {
+            return;
+        }
+
         if (this.focusIndex === -1) {
             this.setFocus(0, 1);
             return;
@@ -94,14 +100,20 @@ export class Toolbar extends FASTElement {
         }
         switch (e.keyCode) {
             case keyCodeArrowDown:
-            case keyCodeArrowRight:
-                // go forward one index
                 this.setFocus(this.focusIndex + 1, 1);
                 return;
             case keyCodeArrowUp:
-            case keyCodeArrowLeft:
-                // go back one index
                 this.setFocus(this.focusIndex - 1, -1);
+                return;
+            case keyCodeArrowRight:
+                this.direction === Direction.ltr
+                    ? this.setFocus(this.focusIndex + 1, 1)
+                    : this.setFocus(this.focusIndex - 1, -1);
+                return;
+            case keyCodeArrowLeft:
+                this.direction === Direction.ltr
+                    ? this.setFocus(this.focusIndex - 1, -1)
+                    : this.setFocus(this.focusIndex + 1, +1);
                 return;
             case keyCodeEnd:
                 // set focus on last item
@@ -125,34 +137,34 @@ export class Toolbar extends FASTElement {
         return Array.from(this.children);
     }
 
-    private handleItemBlur = (e: KeyboardEvent): void => {
+    private handleItemFocus = (e: FocusEvent): void => {
+        if (e.defaultPrevented) {
+            return;
+        }
+        e.preventDefault();
         const target = e.currentTarget as Element;
         const focusIndex: number = this.toolbarItems.indexOf(target);
 
-        if (focusIndex !== this.focusIndex && focusIndex !== -1) {
-            this.setFocus(focusIndex, focusIndex > this.focusIndex ? 1 : -1);
+        // update tab index on elements
+        if (this.focusIndex !== -1 && this.focusIndex !== focusIndex) {
+            (this.toolbarItems[this.focusIndex] as HTMLElement).tabIndex = -1;
+            (target as HTMLElement).tabIndex = 0;
+            // update the focus index
+            this.focusIndex = focusIndex;
         }
     };
 
     private setFocus(focusIndex: number, adjustment: number): void {
-        const children: Element[] = this.toolbarItems;
+        while (inRange(focusIndex, this.toolbarItems.length)) {
+            const child: Element = this.toolbarItems[focusIndex];
 
-        while (inRange(focusIndex, children.length)) {
-            const child: Element = children[focusIndex];
-
-            if (this.isFocusableElement(child)) {
-                // update the tabindex of next focusable element
-                child.setAttribute("tabindex", "0");
-
-                // focus the element
-                (child as HTMLElement).focus();
-
-                // change the previous index to -1
-                children[this.focusIndex].setAttribute("tabindex", "-1");
-
+            if (this.initialItemTabIndexes.has(child)) {
+                (this.toolbarItems[this.focusIndex] as HTMLElement).tabIndex = -1;
+                (child as HTMLElement).tabIndex = 0;
                 // update the focus index
                 this.focusIndex = focusIndex;
-
+                // focus the element
+                (child as HTMLElement).focus();
                 break;
             }
 
@@ -161,40 +173,40 @@ export class Toolbar extends FASTElement {
     }
 
     private setItems = (): void => {
-        const focusIndex = this.toolbarItems.findIndex(this.isFocusableElement);
-
-        // if our focus index is not -1 we have items
-        if (focusIndex !== -1) {
-            this.focusIndex = focusIndex;
-        }
-
+        const tabbableElements: HTMLElement[] = tabbable(this as HTMLElement);
         for (
             let itemIndex: number = 0;
             itemIndex < this.toolbarItems.length;
             itemIndex++
         ) {
-            const thisElement = this.toolbarItems[itemIndex];
+            const element = this.toolbarItems[itemIndex] as HTMLElement;
 
-            if (this.isFocusableElement(thisElement)) {
-                thisElement.setAttribute(
+            if (tabbableElements.includes(element)) {
+                if (this.focusIndex === -1) {
+                    this.focusIndex = itemIndex;
+                }
+                this.initialItemTabIndexes.set(
+                    element,
+                    (element as HTMLElement).tabIndex
+                );
+                element.setAttribute(
                     "tabindex",
                     itemIndex === this.focusIndex ? "0" : "-1"
                 );
-                thisElement.addEventListener("blur", this.handleItemBlur);
+                element.addEventListener("focus", this.handleItemFocus);
             }
         }
     };
 
     private resetItems = (oldValue: any): void => {
-        for (let item: number = 0; item < oldValue.length; item++) {
-            oldValue[item].removeEventListener("blur", this.handleItemBlur);
-        }
-    };
-
-    /**
-     * check if the item is focusable
-     */
-    private isFocusableElement = (el: Element): el is HTMLElement => {
-        return Toolbar.focusableRoles.indexOf(el.getAttribute("role") as string) !== -1;
+        oldValue.forEach(element => {
+            if (this.initialItemTabIndexes.has(element)) {
+                (element as HTMLElement).tabIndex = this.initialItemTabIndexes.get(
+                    element
+                );
+            }
+        });
+        this.initialItemTabIndexes.clear();
+        this.focusIndex = -1;
     };
 }

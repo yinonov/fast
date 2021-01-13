@@ -6,7 +6,10 @@ import { Toolbar } from "./toolbar";
  * @public
  */
 export const ToolbarTemplate = html<Toolbar>`
-    <template role="toolbar">
+    <template
+        role="toolbar"
+        @keydown="${(x, c) => x.handleKeyDown(c.event as KeyboardEvent)}"
+    >
         <slot ${slotted("items")}></slot>
     </template>
 `;

@@ -3,7 +3,7 @@
 ## Overview
 As defined by the W3C:
 
-> A toolbar is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.
+> A [toolbar](https://www.w3.org/TR/wai-aria-practices/#toolbar) is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.
 > 
 > When a set of controls is visually presented as a group, the toolbar role can be used to communicate the presence and purpose of the grouping to screen reader users. Grouping controls into toolbars can also be an effective way of reducing the number of tab stops in the keyboard interface.
 
@@ -28,13 +28,17 @@ Used anywhere someone may want to visually and structurally group related intera
 - `fast-toolbar`
 
 *Attributes:*
-- `orientation`: an enum
-    - horizontal (default)
-    - vertical
+- orientation:  whether the toolbar is oriented vertically or 
+
+*Functions:*
+- focus(): Focuses on the toolbar item at the current focusIndex
 
 *Slots:*
 - `default`
-- `label` - slot for the label
+- `label` - slot for the 
+
+*Events*
+- none
 
 ### Anatomy and Appearance
 
@@ -44,7 +48,6 @@ Used anywhere someone may want to visually and structurally group related intera
     role="toolbar"
     orientation="${x => x.orientation}"
 >
-    <slot name="label"></slot>
     <slot></slot>
 </template>
 ```
@@ -118,7 +121,7 @@ While affordances are given for secondary navigation methods, the initial stance
 
 > Typically, disabled elements are not focusable when navigating with a keyboard. However, in circumstances where discoverability of a function is crucial, it may be helpful if disabled controls are focusable so screen reader users are more likely to be aware of their presence.
 
-Following the "flexible" principle of FAST, I think we should support an API which enables exposing disabled controls to users. This allows implementors to decide if their circumstances warrant exposing that functionality or not. A simple solution here is that if an author wants to expose a disabled control, they would simply add it to the tabindex:
+Following the "flexible" principle of FAST, we should support an API which enables exposing disabled controls to users. This allows implementors to decide if their circumstances warrant exposing that functionality or not. A simple solution here is that if an author wants to expose a disabled control, they would simply add it to the tabindex:
 
 ```html
 <fast-button disabled tabindex="0">Disabled</fast-button>
@@ -127,3 +130,15 @@ Following the "flexible" principle of FAST, I think we should support an API whi
 #### Labels
 A label is required for toolbars.
 > If the toolbar has a visible label, it is referenced by aria-labelledby on the toolbar element. Otherwise, the toolbar element has a label provided by aria-label.
+
+### Accessibility
+
+The menu should align to the interaction model provided by the [W3C](https://w3c.github.io/aria-practices/#toolbar)
+
+
+### Globalization
+The component should respond appropriately to both ltr/rtl layouts in that horizontal layouts should reverse and arrow keys move focus in the expected direction.
+
+### Dependencies
+
+This component depends on Fast Element and the [tabbable](https://github.com/focus-trap/tabbable) library to identify tabbable children.

@@ -5,7 +5,7 @@ sidebar_label: toolbar
 custom_edit_url: https://github.com/microsoft/fast-dna/edit/master/packages/web-components/fast-foundation/src/toolbar/README.md
 ---
 
-The `fast-toolbar` component is used to <TODO>.
+The `fast-toolbar` component is used to TODO.
 
 ## Usage
 

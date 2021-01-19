@@ -39,6 +39,7 @@ import { TabPanel } from '@microsoft/fast-foundation';
 import { Tabs } from '@microsoft/fast-foundation';
 import { TextArea } from '@microsoft/fast-foundation';
 import { TextField } from '@microsoft/fast-foundation';
+import { Toolbar } from '@microsoft/fast-foundation';
 import { Tooltip } from '@microsoft/fast-foundation';
 import { TreeItem } from '@microsoft/fast-foundation';
 import { TreeView } from '@microsoft/fast-foundation';
@@ -605,6 +606,10 @@ export class FASTTextField extends TextField {
     appearance: TextFieldAppearance;
     // @internal (undocumented)
     connectedCallback(): void;
+}
+
+// @public
+export class FASTToolbar extends Toolbar {
 }
 
 // @public

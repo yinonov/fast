@@ -73,6 +73,9 @@ export { fastTextAreaConfig };
 import fastTextFieldConfig from "./fast-text-field";
 export { fastTextFieldConfig };
 
+import fastToolbarConfig from "./fast-toolbar";
+export { fastToolbarConfig };
+
 import fastTooltipConfig from "./fast-tooltip";
 export { fastTooltipConfig };
 

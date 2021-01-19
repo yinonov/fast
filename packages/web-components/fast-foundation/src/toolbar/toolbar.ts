@@ -100,20 +100,32 @@ export class Toolbar extends FASTElement {
         }
         switch (e.keyCode) {
             case keyCodeArrowDown:
-                this.setFocus(this.focusIndex + 1, 1);
+                if (this.orientation === Orientation.vertical) {
+                    e.preventDefault();
+                    this.setFocus(this.focusIndex + 1, 1);
+                }
                 return;
             case keyCodeArrowUp:
-                this.setFocus(this.focusIndex - 1, -1);
+                if (this.orientation === Orientation.vertical) {
+                    e.preventDefault();
+                    this.setFocus(this.focusIndex - 1, -1);
+                }
                 return;
             case keyCodeArrowRight:
-                this.direction === Direction.ltr
-                    ? this.setFocus(this.focusIndex + 1, 1)
-                    : this.setFocus(this.focusIndex - 1, -1);
+                if (this.orientation === Orientation.horizontal) {
+                    e.preventDefault();
+                    this.direction === Direction.ltr
+                        ? this.setFocus(this.focusIndex + 1, 1)
+                        : this.setFocus(this.focusIndex - 1, -1);
+                }
                 return;
             case keyCodeArrowLeft:
-                this.direction === Direction.ltr
-                    ? this.setFocus(this.focusIndex - 1, -1)
-                    : this.setFocus(this.focusIndex + 1, +1);
+                if (this.orientation === Orientation.horizontal) {
+                    e.preventDefault();
+                    this.direction === Direction.ltr
+                        ? this.setFocus(this.focusIndex - 1, -1)
+                        : this.setFocus(this.focusIndex + 1, +1);
+                }
                 return;
             case keyCodeEnd:
                 // set focus on last item

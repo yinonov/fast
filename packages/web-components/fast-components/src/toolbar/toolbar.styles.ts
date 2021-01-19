@@ -14,13 +14,16 @@ import {
     neutralForegroundRestBehavior,
     neutralOutlineRestBehavior,
 } from "../styles/index";
+import { elevation } from "../styles/index";
 
 export const ToolbarStyles = css`
     ${display("flex")}:host {
+        --elevation: 10;
         box-sizing: border-box;
-        padding: 0 calc((6 + (var(--design-unit) * 2 * var(--density))) * 1px);
         display: flex;
         flex-wrap: wrap;
+        background: ${neutralFillRestBehavior.var};
+        ${elevation}
     }
     :host([orientation="vertical"]) {
         flex-direction: column;
@@ -29,7 +32,7 @@ export const ToolbarStyles = css`
         flex-direction: row;
     }
     ::slotted(*) {
-        margin: calc(var(--design-unit) * 1px);
+        margin: calc((var(--design-unit) + var(--density)) * 1px);
     }
 `.withBehaviors(
     accentFillActiveBehavior,

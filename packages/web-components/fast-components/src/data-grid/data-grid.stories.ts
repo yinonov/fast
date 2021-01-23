@@ -216,7 +216,16 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
 
 const buttonCellTemplate = html<DataGridCell>`
     <template>
-        <fast-button @click="${x => cellTemplateButtonClick(x)}" style="width: 100%;">
+        <fast-button
+            @click="${x => cellTemplateButtonClick(x)}"
+            style="width: 100%;"
+            id=${x =>
+                x.rowData === null ||
+                x.columnDefinition === null ||
+                x.columnDefinition.columnDataKey === null
+                    ? null
+                    : x.rowData[x.columnDefinition.columnDataKey]}
+        >
             ${x =>
                 x.rowData === null ||
                 x.columnDefinition === null ||
@@ -224,6 +233,23 @@ const buttonCellTemplate = html<DataGridCell>`
                     ? null
                     : x.rowData[x.columnDefinition.columnDataKey]}
         </fast-button>
+        <fast-tooltip
+            visible
+            anchor=${x =>
+                x.rowData === null ||
+                x.columnDefinition === null ||
+                x.columnDefinition.columnDataKey === null
+                    ? null
+                    : x.rowData[x.columnDefinition.columnDataKey]}
+            position="right"
+        >
+            ${x =>
+                x.rowData === null ||
+                x.columnDefinition === null ||
+                x.columnDefinition.columnDataKey === null
+                    ? null
+                    : x.rowData[x.columnDefinition.columnDataKey]}
+        </fast-tooltip>
     </template>
 `;
 
@@ -248,7 +274,8 @@ function reset(): void {
         return;
     }
     defaultGridElement.columnDefinitions = null;
-    defaultGridElement.rowsData = newDataSet(10);
+    defaultGridElement.columnDefinitions = templateColumns;
+    defaultGridElement.rowsData = newDataSet(100);
 }
 
 function setDefaultCols(): void {

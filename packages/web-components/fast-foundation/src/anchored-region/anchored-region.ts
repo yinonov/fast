@@ -977,7 +977,7 @@ export class AnchoredRegion extends FASTElement {
                 break;
 
             case "content":
-                this.regionWidth = "fit-content";
+                this.regionWidth = "unset";
                 break;
         }
     };
@@ -1035,7 +1035,7 @@ export class AnchoredRegion extends FASTElement {
                 break;
 
             case "content":
-                this.regionHeight = "fit-content";
+                this.regionHeight = "unset";
                 break;
         }
     };

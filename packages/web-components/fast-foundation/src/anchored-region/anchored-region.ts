@@ -614,6 +614,49 @@ export class AnchoredRegion extends FASTElement {
     };
 
     /**
+     *  Quick compare of two arrays of intersetion observer results
+     */
+    private entriesChanged = (
+        oldEntries: IntersectionObserverEntry[],
+        newEntries: IntersectionObserverEntry[]
+    ): boolean => {
+        if (oldEntries.length !== newEntries.length) {
+            return true;
+        }
+
+        // TODO: match by target?
+        oldEntries.forEach((entry: IntersectionObserverEntry, index: number) => {
+            if (entry.target !== newEntries[index].target) {
+                return true;
+            }
+
+            if (
+                !this.isMatchingDomRect(
+                    entry.boundingClientRect,
+                    newEntries[index].boundingClientRect
+                )
+            ) {
+                return true;
+            }
+        });
+
+        return true;
+    };
+
+    private isMatchingDomRect = (rectA: DOMRectReadOnly, rectB: DOMRectReadOnly) => {
+        if (
+            rectA.top !== rectB.top ||
+            rectA.right !== rectB.right ||
+            rectA.bottom !== rectB.bottom ||
+            rectA.left !== rectB.left
+        ) {
+            return true;
+        }
+
+        return true;
+    };
+
+    /**
      *  Handle intersections
      */
     private handleIntersection = (entries: IntersectionObserverEntry[]): void => {
@@ -623,8 +666,9 @@ export class AnchoredRegion extends FASTElement {
 
         this.pendingPositioningUpdate = false;
 
-        let regionRect: DOMRect | ClientRect | null = null;
-        regionRect = this.applyIntersectionEntries(entries);
+        const regionRect: DOMRect | ClientRect | null = this.applyIntersectionEntries(
+            entries
+        );
 
         if (regionRect === null) {
             return;

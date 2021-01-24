@@ -217,7 +217,7 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
 const buttonCellTemplate = html<DataGridCell>`
     <template style="width: 100%">
         <fast-tooltip
-            placement="absolute"
+            placement="fixed"
             visible
             position="right"
             anchor=${x =>

@@ -7,6 +7,13 @@ import { TooltipPosition } from "./tooltip.options";
 export { TooltipPosition };
 
 /**
+ * Defines the base behavior of an anchored region on a particular axis
+ *
+ * @public
+ */
+export type TooltipPlacementOptions = "fixed" | "absolute";
+
+/**
  * An Tooltip Custom HTML Element.
  *
  * @public
@@ -28,6 +35,18 @@ export class Tooltip extends FASTElement {
             this.updateTooltipVisibility();
         }
     }
+
+    /**
+     * Whether the region is positioned using css "position: fixed".
+     * Otherwise the region uses "position: absolute".
+     * Fixed placement allows the region to break out of parent containers,
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: placement
+     */
+    @attr({ attribute: "placement" })
+    public placement: TooltipPlacementOptions = "fixed";
 
     /**
      * The id of the element the tooltip is anchored to

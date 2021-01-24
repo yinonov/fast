@@ -1472,6 +1472,7 @@ export class Tooltip extends FASTElement {
     horizontalPositioningMode: AxisPositioningMode;
     // @internal (undocumented)
     horizontalScaling: AxisScalingMode;
+    placement: TooltipPlacementOptions;
     position: TooltipPosition;
     // @internal
     region: AnchoredRegion;
@@ -1489,6 +1490,9 @@ export class Tooltip extends FASTElement {
     viewportElement: HTMLElement | null;
     visible: boolean;
     }
+
+// @public
+export type TooltipPlacementOptions = "fixed" | "absolute";
 
 // @public
 export enum TooltipPosition {

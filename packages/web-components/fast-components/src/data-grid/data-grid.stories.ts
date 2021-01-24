@@ -215,7 +215,25 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
 });
 
 const buttonCellTemplate = html<DataGridCell>`
-    <template>
+    <template style="width: 100%">
+        <fast-tooltip
+            placement="absolute"
+            visible
+            position="right"
+            anchor=${x =>
+                x.rowData === null ||
+                x.columnDefinition === null ||
+                x.columnDefinition.columnDataKey === null
+                    ? null
+                    : x.rowData[x.columnDefinition.columnDataKey]}
+        >
+            ${x =>
+                x.rowData === null ||
+                x.columnDefinition === null ||
+                x.columnDefinition.columnDataKey === null
+                    ? null
+                    : x.rowData[x.columnDefinition.columnDataKey]}
+        </fast-tooltip>
         <fast-button
             @click="${x => cellTemplateButtonClick(x)}"
             style="width: 100%;"
@@ -233,23 +251,6 @@ const buttonCellTemplate = html<DataGridCell>`
                     ? null
                     : x.rowData[x.columnDefinition.columnDataKey]}
         </fast-button>
-        <fast-tooltip
-            visible
-            anchor=${x =>
-                x.rowData === null ||
-                x.columnDefinition === null ||
-                x.columnDefinition.columnDataKey === null
-                    ? null
-                    : x.rowData[x.columnDefinition.columnDataKey]}
-            position="right"
-        >
-            ${x =>
-                x.rowData === null ||
-                x.columnDefinition === null ||
-                x.columnDefinition.columnDataKey === null
-                    ? null
-                    : x.rowData[x.columnDefinition.columnDataKey]}
-        </fast-tooltip>
     </template>
 `;
 

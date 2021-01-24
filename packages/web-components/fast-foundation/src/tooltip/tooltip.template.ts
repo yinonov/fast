@@ -11,7 +11,7 @@ export function createTooltipTemplate(prefix: string): ViewTemplate {
             x => x.tooltipVisible,
             html<Tooltip>`
             <${prefix}-anchored-region
-                fixed-placement="true"
+                fixed-placement="${x => (x.placement === "fixed" ? "true" : void 0)}"
                 vertical-positioning-mode="${x => x.verticalPositioningMode}"
                 vertical-default-position="${x => x.verticalDefaultPosition}"
                 vertical-inset="${x => x.verticalInset}"

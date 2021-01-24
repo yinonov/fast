@@ -3,7 +3,7 @@
 
     <h2>Default</h2>
     <div style="height: 400px; width: 400px; background: lightgray;">
-        <fast-tooltip anchor="anchor-default" visible="true" position="top">
+        <fast-tooltip anchor="anchor-default">
             Helpful text is helpful
         </fast-tooltip>
         <fast-button id="anchor-default" style="margin: 200px;">
@@ -12,7 +12,15 @@
     </div>
 
     <h2>Show/Hide</h2>
-    <div style="height: 400px; width: 400px; background: lightgray;">
+    <div
+        style="
+            height: 400px;
+            width: 400px;
+            background: lightgray;
+            position: relative;
+            overflow: scroll;
+        "
+    >
         <fast-tooltip id="tooltip-show-1" anchor="anchor-show" visible position="top">
             Always visible
         </fast-tooltip>
@@ -25,8 +33,59 @@
         <fast-tooltip id="tooltip-show-4" anchor="anchor-show" visible position="left">
             Always visible
         </fast-tooltip>
-        <fast-button id="anchor-show" style="margin: 200px;">
+        <fast-button id="anchor-show" style="margin: 200px 400px 400px 200px;">
             Toggle tooltips
+        </fast-button>
+    </div>
+
+    <h2>Absolute placement (scrolls with container, can be clipped by containers)</h2>
+    <div
+        style="
+            height: 400px;
+            width: 400px;
+            background: lightgray;
+            position: relative;
+            overflow: scroll;
+        "
+    >
+        <fast-tooltip
+            id="tooltip-absolute-1"
+            anchor="anchor-absolute"
+            visible
+            position="top"
+            placement="absolute"
+        >
+            Always visible
+        </fast-tooltip>
+        <fast-tooltip
+            id="tooltip-absolute-2"
+            anchor="anchor-absolute"
+            visible
+            position="right"
+            placement="absolute"
+        >
+            Always visible
+        </fast-tooltip>
+        <fast-tooltip
+            id="tooltip-absolute-3"
+            anchor="anchor-absolute"
+            visible
+            position="bottom"
+            placement="absolute"
+        >
+            Always visible
+        </fast-tooltip>
+        <fast-tooltip
+            id="tooltip-absolute-4"
+            anchor="anchor-absolute"
+            visible
+            position="left"
+            placement="absolute"
+        >
+            Always visible
+        </fast-tooltip>
+        <fast-button id="anchor-absolute" style="margin: 200px 400px 400px 200px;">
+            Anchor
         </fast-button>
     </div>
 

@@ -17,7 +17,6 @@ import {
 export const TooltipStyles = css`
     :host {
         contain: layout;
-        overflow: visible;
         height: 0;
         width: 0;
     }

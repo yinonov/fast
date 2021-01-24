@@ -345,7 +345,7 @@ export class Tooltip extends FASTElement {
 
         this.updateTimer = window.setTimeout((): void => {
             this.updateTimerTick();
-        }, 30);
+        }, 100);
     };
 
     private updateTimerTick = (): void => {
@@ -355,7 +355,7 @@ export class Tooltip extends FASTElement {
         }
         this.updateTimer = window.setTimeout((): void => {
             this.updateTimerTick();
-        }, 30);
+        }, 100);
     };
 
     /**

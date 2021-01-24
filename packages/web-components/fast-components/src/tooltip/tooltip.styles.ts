@@ -35,6 +35,9 @@ export const TooltipStyles = css`
         font-size: var(--type-ramp-base-font-size);
         line-height: var(--type-ramp-base-line-height);
         white-space: nowrap;
+        transition-property: top, right, bottom, left;
+        transition-duration: 300ms;
+        transition-timing-function: ease-out;
         // TODO: a mechanism to manage z-index across components
         // https://github.com/microsoft/fast/issues/3813
         z-index: 10000;

@@ -270,6 +270,62 @@ export interface ColumnDefinition {
     title?: string;
 }
 
+// Warning: (ae-different-release-tags) This symbol has another declaration with a different release tag
+// Warning: (ae-forgotten-export) The symbol "FormAssociatedCombobox" needs to be exported by the entry point index.d.ts
+// Warning: (ae-internal-mixed-release-tag) Mixed release tags are not allowed for "Combobox" because one of its declarations is marked as @internal
+//
+// @public
+export class Combobox extends FormAssociatedCombobox {
+    // (undocumented)
+    autocomplete: "inline" | "list" | "both" | "none" | undefined;
+    // @internal
+    clickHandler(e: MouseEvent): boolean | void;
+    // (undocumented)
+    connectedCallback(): void;
+    // @internal
+    disabledChanged(prev: boolean, next: boolean): void;
+    displayValue: string;
+    // @internal
+    focusoutHandler(e: FocusEvent): boolean | void;
+    // @internal
+    formResetCallback: () => void;
+    // (undocumented)
+    handleTextInput(e: InputEvent): void;
+    // (undocumented)
+    handleTypeAhead: () => undefined;
+    // @internal
+    keydownHandler(e: KeyboardEvent): boolean | void;
+    // (undocumented)
+    listboxId: string;
+    // @internal
+    maxHeight: number;
+    // @internal
+    open: boolean;
+    // (undocumented)
+    protected openChanged(): void;
+    position: SelectPosition;
+    positionAttribute: SelectPosition;
+    role: SelectRole;
+    // @internal
+    selectedIndexChanged(prev: any, next: any): void;
+    setPositioning(): void;
+    // @internal
+    slottedOptionsChanged(prev: any, next: any): void;
+    // (undocumented)
+    typeaheadBufferChanged(prev: string | undefined, next: string): void;
+    get value(): string;
+    set value(next: string);
+    // (undocumented)
+    valueInput: HTMLInputElement;
+}
+
+// @internal (undocumented)
+export interface Combobox extends StartEnd, DelegatesARIACombobox {
+}
+
+// @public
+export const ComboboxTemplate: import("@microsoft/fast-element").ViewTemplate<Combobox, any>;
+
 // @public
 export function composedParent<T extends HTMLElement>(element: T): HTMLElement | null;
 
@@ -479,6 +535,20 @@ export class DelegatesARIAButton {
 
 // @internal
 export interface DelegatesARIAButton extends ARIAGlobalStatesAndProperties {
+}
+
+// Warning: (ae-different-release-tags) This symbol has another declaration with a different release tag
+// Warning: (ae-internal-mixed-release-tag) Mixed release tags are not allowed for "DelegatesARIACombobox" because one of its declarations is marked as @internal
+//
+// @public
+export class DelegatesARIACombobox {
+    ariaAutocomplete: "inline" | "list" | "both" | "none" | undefined;
+    ariaExpanded: "true" | "false" | undefined;
+    ariaPressed: "true" | "false" | "mixed" | undefined;
+}
+
+// @internal
+export interface DelegatesARIACombobox extends ARIAGlobalStatesAndProperties {
 }
 
 // Warning: (ae-different-release-tags) This symbol has another declaration with a different release tag
@@ -792,7 +862,7 @@ export class Listbox extends FASTElement {
     protected focusAndScrollOptionIntoView(): void;
     // @internal (undocumented)
     focusinHandler(e: FocusEvent): void;
-    handleTypeAhead(key: any): void;
+    handleTypeAhead: (key: string) => void;
     // @internal
     keydownHandler(e: KeyboardEvent): boolean | void;
     // (undocumented)
@@ -821,8 +891,16 @@ export class Listbox extends FASTElement {
     // (undocumented)
     slottedOptionsChanged(prev: any, next: any): void;
     // @internal
+    protected static readonly TYPE_AHEAD_TIMEOUT_MS = 1000;
+    // @internal (undocumented)
+    protected typeaheadBuffer: string;
+    // (undocumented)
+    typeaheadBufferChanged(prev: string, next: string): void;
+    // @internal
     protected typeAheadExpired: boolean;
-    }
+    // @internal (undocumented)
+    protected typeaheadTimeout: number;
+}
 
 // @internal (undocumented)
 export interface Listbox extends DelegatesARIAListbox {

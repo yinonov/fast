@@ -25,12 +25,15 @@ import { Direction } from '@microsoft/fast-web-utilities';
 import { Disclosure } from '@microsoft/fast-foundation';
 import { Divider } from '@microsoft/fast-foundation';
 import { Flipper } from '@microsoft/fast-foundation';
-import { HorizontalScroll } from '@microsoft/fast-foundation';
+import { GroupType } from '@microsoft/mgt';
+import { IDynamicPerson } from '@microsoft/mgt';
 import { Listbox } from '@microsoft/fast-foundation';
 import { ListboxOption } from '@microsoft/fast-foundation';
+import { ListPicker } from '@microsoft/fast-foundation';
 import { Menu } from '@microsoft/fast-foundation';
 import { MenuItem } from '@microsoft/fast-foundation';
 import { NumberField } from '@microsoft/fast-foundation';
+import { PersonType } from '@microsoft/mgt';
 import { Radio } from '@microsoft/fast-foundation';
 import { RadioGroup } from '@microsoft/fast-foundation';
 import { Select } from '@microsoft/fast-foundation';
@@ -598,6 +601,12 @@ export class FASTNumberField extends NumberField {
 export class FASTOption extends ListboxOption {
 }
 
+// Warning: (ae-forgotten-export) The symbol "PeoplePicker" needs to be exported by the entry point index.d.ts
+//
+// @public
+export class FASTPeoplePicker extends PeoplePicker {
+}
+
 // @public
 export class FASTProgress extends BaseProgress {
 }
@@ -1110,6 +1119,9 @@ export enum PaletteType {
 
 // @public
 export const parseColorString: (color: string) => ColorRGBA64;
+
+// @public
+export const PeoplePickerStyles: import("@microsoft/fast-element").ElementStyles;
 
 // @public
 export const ProgressRingStyles: import("@microsoft/fast-element").ElementStyles;

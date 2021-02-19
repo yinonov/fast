@@ -16,6 +16,11 @@ export default class App extends React.Component<{}, {}> {
                 <fast-design-system-provider use-defaults>
                     <DesignSystemProvider designSystem={creatorDesignSystem}>
                         <Route component={Creator} exact={true} path="/" />
+                        <Route
+                            component={Creator}
+                            exact={true}
+                            path="/data-dictionary/:key"
+                        />
                     </DesignSystemProvider>
                     <Route component={Preview} exact={true} path="/preview" />
                 </fast-design-system-provider>

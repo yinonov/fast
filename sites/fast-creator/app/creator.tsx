@@ -1,4 +1,4 @@
-import { memoize } from "lodash-es";
+import { get, memoize } from "lodash-es";
 import rafThrottle from "raf-throttle";
 import {
     ActionToggle,
@@ -11,6 +11,7 @@ import { classNames, Direction } from "@microsoft/fast-web-utilities";
 import React from "react";
 import {
     CustomMessage,
+    DataDictionary,
     MessageSystemType,
     SchemaDictionary,
 } from "@microsoft/fast-tooling";
@@ -103,7 +104,7 @@ class Creator extends Editor<{}, CreatorState> {
     constructor(props: {}) {
         super(props);
 
-        const componentLinkedDataId: string = "root";
+        const dataDictionary: DataDictionary<unknown> = this.getInitialDataDictionary();
 
         this.devices = this.getDevices();
 
@@ -124,20 +125,12 @@ class Creator extends Editor<{}, CreatorState> {
             theme: StandardLuminance.LightMode,
             direction: Direction.ltr,
             accentColor: fastDesignSystemDefaults.accentBaseColor,
-            activeDictionaryId: componentLinkedDataId,
+            activeDictionaryId: dataDictionary[1],
             previewReady: false,
             devToolsVisible: true,
             mobileFormVisible: false,
             mobileNavigationVisible: false,
-            dataDictionary: [
-                {
-                    [componentLinkedDataId]: {
-                        schemaId: divTag,
-                        data: {},
-                    },
-                },
-                componentLinkedDataId,
-            ],
+            dataDictionary,
             transparentBackground: false,
         };
     }
@@ -276,6 +269,43 @@ class Creator extends Editor<{}, CreatorState> {
                 <Footer />
             </div>
         );
+    }
+
+    private getInitialDataDictionary(): DataDictionary<unknown> {
+        const componentLinkedDataId: string = "root";
+        const initialDataDictionary: DataDictionary<unknown> = [
+            {
+                [componentLinkedDataId]: {
+                    schemaId: divTag,
+                    data: {},
+                },
+            },
+            componentLinkedDataId,
+        ];
+
+        // If on a data-dictionary route, fetch the data dictionary stored on the server
+        const locationPathname: string = get(this.props, "location.pathname", "");
+
+        if (locationPathname.startsWith("/data-dictionary/")) {
+            (async () => {
+                const rawResponse = await fetch(
+                    `/api/data-dictionary/${(this.props as any).match.params.key}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+
+                this.setState({
+                    dataDictionary: await rawResponse.json(),
+                });
+            })();
+        }
+
+        return initialDataDictionary;
     }
 
     private handleAddLinkedData = (onChange): ((e: ControlOnChangeConfig) => void) => {

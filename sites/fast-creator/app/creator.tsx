@@ -1,10 +1,12 @@
-import { memoize } from "lodash-es";
+import { get, memoize } from "lodash-es";
 import rafThrottle from "raf-throttle";
 import { classNames, Direction } from "@microsoft/fast-web-utilities";
 import React from "react";
 import {
     CustomMessageIncomingOutgoing,
     DataType,
+    CustomMessage,
+    DataDictionary,
     MessageSystemType,
     SchemaDictionary,
 } from "@microsoft/fast-tooling";
@@ -122,7 +124,7 @@ class Creator extends Editor<{}, CreatorState> {
             theme: StandardLuminance.LightMode,
             direction: Direction.ltr,
             accentColor: fastDesignSystemDefaults.accentBaseColor,
-            activeDictionaryId: componentLinkedDataId,
+            activeDictionaryId: dataDictionary[1],
             previewReady: false,
             devToolsVisible: true,
             mobileFormVisible: false,

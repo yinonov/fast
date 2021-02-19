@@ -13,6 +13,11 @@ export default class App extends React.Component<{}, {}> {
             <BrowserRouter>
                 <fast-design-system-provider use-defaults density="-2">
                     <Route component={Creator} exact={true} path="/" />
+                    <Route
+                        component={Creator}
+                        exact={true}
+                        path="/data-dictionary/:key"
+                    />
                     <Route component={Preview} exact={true} path="/preview" />
                 </fast-design-system-provider>
             </BrowserRouter>

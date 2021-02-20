@@ -69,6 +69,7 @@ function convertAttributeData(tag: VSCodeNativeHTMLTag): WebComponentAttribute[]
         return {
             name: attribute.name,
             title: attribute.name,
+            description: attribute.name,
             type: getDataTypeForAttribute(attribute),
             default: "",
             required: false,

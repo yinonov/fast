@@ -441,7 +441,7 @@ export class Combobox extends FormAssociatedCombobox {
             return;
         }
         this.region.viewportElement = document.body;
-        this.region.anchorElement = this.valueInput;
+        this.region.anchorElement = this;
     };
 
     /**

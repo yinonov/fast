@@ -1,4 +1,4 @@
-import { html, ref, slotted } from "@microsoft/fast-element";
+import { html, ref, slotted, when } from "@microsoft/fast-element";
 import { Listbox } from "../listbox/listbox";
 import { endTemplate, startTemplate } from "../patterns/start-end";
 import { Combobox } from "./combobox";
@@ -60,23 +60,46 @@ export const ComboboxTemplate = html<Combobox>`
             </slot>
             ${endTemplate}
         </div>
-        <div
-            aria-disabled="${x => x.disabled}"
-            class="listbox"
-            id="${x => x.listboxId}"
-            part="listbox"
-            role="listbox"
-            style="--max-height: ${x => x.maxHeight}px"
-            ?disabled="${x => x.disabled}"
-            ?hidden="${x => !x.open}"
-        >
-            <slot
-                ${slotted({
-                    filter: Listbox.slottedOptionFilter,
-                    flatten: true,
-                    property: "slottedOptions",
-                })}
-            ></slot>
-        </div>
+        ${when(
+            x => x.open,
+            html<Combobox>`
+                <fast-anchored-region
+                    class="region"
+                    fixed-placement="true"
+                    vertical-positioning-mode="dynamic"
+                    vertical-scaling="fill"
+                    vertical-inset="false"
+                    horizontal-positioning-mode="dynamic"
+                    horizontal-scaling="anchor"
+                    horizontal-inset="true"
+                    @loaded="${(x, c) => x.handleRegionLoaded(c.event as Event)}"
+                    ${ref("region")}
+                >
+                    <div
+                        aria-disabled="${x => x.disabled}"
+                        class="listbox"
+                        id="${x => x.listboxId}"
+                        part="listbox"
+                        role="listbox"
+                        ?disabled="${x => x.disabled}"
+                    >
+                        <slot
+                            ${slotted({
+                                flatten: true,
+                                property: "slottedOptions",
+                            })}
+                        ></slot>
+                    </div>
+                </fast-anchored-region>
+            `
+        )}
     </template>
 `;
+
+// <slot
+// ${slotted({
+//     filter: Listbox.slottedOptionFilter,
+//     flatten: true,
+//     property: "slottedOptions",
+// })}
+// ></slot>

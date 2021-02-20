@@ -1,4 +1,4 @@
-import { attr, Observable, observable } from "@microsoft/fast-element";
+import { attr, DOM, Observable, observable } from "@microsoft/fast-element";
 import uniqueId from "lodash-es/uniqueId";
 import { ListboxOption } from "../listbox-option/listbox-option";
 import { ARIAGlobalStatesAndProperties } from "../patterns/aria-global";
@@ -6,6 +6,7 @@ import { StartEnd } from "../patterns/start-end";
 import { applyMixins } from "../utilities/apply-mixins";
 import { SelectPosition, SelectRole } from "../select/select.options";
 import { FormAssociatedCombobox } from "./combobox.form-associated";
+import { AnchoredRegion } from "../anchored-region";
 
 const escapeRegex = /[.*+\-?^${}()|[\]\\]/g;
 
@@ -27,12 +28,17 @@ export class Combobox extends FormAssociatedCombobox {
     @attr({ attribute: "autocomplete", mode: "fromView" })
     autocomplete: "inline" | "list" | "both" | "none" | undefined;
 
-    protected openChanged() {
-        this.ariaExpanded = this.open ? "true" : "false";
-        if (this.open) {
-            this.setPositioning();
-            this.focusAndScrollOptionIntoView();
-            this.indexWhenOpened = this.selectedIndex;
+    protected openChanged(oldValue: boolean, newValue: boolean) {
+        if (this.$fastController.isConnected && oldValue !== newValue) {
+            this.ariaExpanded = this.open ? "true" : "false";
+            if (this.open) {
+                DOM.queueUpdate(() => {
+                    this.setRegionProps();
+                });
+                this.indexWhenOpened = this.selectedIndex;
+            } else {
+                this.region.classList.toggle("loaded", false);
+            }
         }
     }
 
@@ -159,24 +165,7 @@ export class Combobox extends FormAssociatedCombobox {
      * @param force - direction to force the listbox to display
      * @public
      */
-    public setPositioning(): void {
-        const currentBox = this.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const availableBottom = viewportHeight - currentBox.bottom;
-
-        this.position = this.forcedPosition
-            ? this.positionAttribute
-            : currentBox.top > availableBottom
-            ? SelectPosition.above
-            : SelectPosition.below;
-
-        this.positionAttribute = this.forcedPosition
-            ? this.positionAttribute
-            : this.position;
-
-        this.maxHeight =
-            this.position === SelectPosition.above ? ~~currentBox.top : ~~availableBottom;
-    }
+    public setPositioning(): void {}
 
     /**
      * The max height for the listbox when opened.
@@ -193,6 +182,19 @@ export class Combobox extends FormAssociatedCombobox {
      */
     @observable
     public displayValue: string = "";
+
+    /**
+     * The timer that controls the time between position updates
+     */
+    private updateTimer: number | null = null;
+
+    /**
+     *
+     *
+     * @internal
+     */
+    @observable
+    public region: AnchoredRegion;
 
     /**
      * Synchronize the `aria-disabled` property when the `disabled` property changes.
@@ -232,7 +234,6 @@ export class Combobox extends FormAssociatedCombobox {
         // if (composedPath.includes(this.valueInput)) {
         //     console.log(composedPath);
         // }
-
 
         // do nothing if the select is disabled
         if (this.disabled) {
@@ -366,6 +367,17 @@ export class Combobox extends FormAssociatedCombobox {
         return true;
     }
 
+    public handleRegionLoaded = (e: Event): void => {
+        // TODO: make updating configurable
+        if (!this.open || this.updateTimer !== null) {
+            return;
+        }
+        this.focusAndScrollOptionIntoView();
+        this.updateTimer = window.setTimeout((): void => {
+            this.startUpdateTimer();
+        }, 100);
+    };
+
     public handleTypeAhead = () => void 0;
 
     public typeaheadBufferChanged(prev: string = "", next: string): void {
@@ -376,9 +388,13 @@ export class Combobox extends FormAssociatedCombobox {
         const pattern = this.typeaheadBuffer.replace(escapeRegex, "\\$&");
         const re = new RegExp(`^${pattern}`, "gi");
 
-        const filteredOptions = this.options.filter((o: ListboxOption) => o.text.trim().match(re));
+        const filteredOptions = this.options.filter((o: ListboxOption) =>
+            o.text.trim().match(re)
+        );
         if (filteredOptions.length) {
-            const selectedIndex = this.options.findIndex(o => o.isSameNode(filteredOptions[0]));
+            const selectedIndex = this.options.findIndex(o =>
+                o.isSameNode(filteredOptions[0])
+            );
             if (selectedIndex > -1) {
                 this.selectedIndex = selectedIndex;
             }
@@ -390,7 +406,11 @@ export class Combobox extends FormAssociatedCombobox {
 
         this.valueInput.focus();
 
-        this.valueInput.setSelectionRange(this.typeaheadBuffer.length, this.firstSelectedOption.text.length, "backward");
+        this.valueInput.setSelectionRange(
+            this.typeaheadBuffer.length,
+            this.firstSelectedOption.text.length,
+            "backward"
+        );
     }
 
     public handleTextInput(e: InputEvent): void {
@@ -410,6 +430,54 @@ export class Combobox extends FormAssociatedCombobox {
         super.connectedCallback();
         this.forcedPosition = !!this.positionAttribute;
     }
+
+    private setRegionProps = (): void => {
+        if (!this.open) {
+            return;
+        }
+        if (this.region === null || this.region === undefined) {
+            // TODO: limit this
+            DOM.queueUpdate(this.setRegionProps);
+            return;
+        }
+        this.region.viewportElement = document.body;
+        this.region.anchorElement = this.valueInput;
+    };
+
+    /**
+     * starts the update timer if not currently running
+     */
+    private startUpdateTimer = (): void => {
+        DOM.queueUpdate(() => {
+            this.region.classList.toggle("loaded", true);
+        });
+
+        this.updateTimer = window.setTimeout((): void => {
+            this.updateTimerTick();
+        }, 50);
+    };
+
+    private updateTimerTick = (): void => {
+        this.clearUpdateTimer();
+        if (this.open) {
+            if (this.region !== undefined) {
+                this.region.update();
+            }
+            this.updateTimer = window.setTimeout((): void => {
+                this.updateTimerTick();
+            }, 50);
+        }
+    };
+
+    /**
+     * clears the update timer
+     */
+    private clearUpdateTimer = (): void => {
+        if (this.updateTimer !== null) {
+            clearTimeout(this.updateTimer);
+            this.updateTimer = null;
+        }
+    };
 }
 
 /**

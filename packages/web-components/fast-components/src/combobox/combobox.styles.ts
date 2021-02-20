@@ -41,6 +41,25 @@ export const ComboboxStyles = css`
         outline: none;
     }
 
+    .region {
+        z-index: 1;
+        overflow: hidden;
+        display: flex;
+    }
+
+    .bottom {
+        flex-direction: column;
+    }
+    .top {
+        flex-direction: column-reverse;
+    }
+
+    .loaded {
+        transition-property: top, right, bottom, left;
+        transition-duration: 60ms;
+        transition-timing-function: ease;
+    }
+
     .listbox {
         ${elevation}
         background: ${neutralLayerFloatingBehavior.var};
@@ -54,12 +73,9 @@ export const ComboboxStyles = css`
         padding: calc(var(--design-unit) * 1px) 0;
         overflow-y: auto;
         position: absolute;
+        max-height: 100%;
         width: 100%;
         z-index: 1;
-    }
-
-    .listbox[hidden] {
-        display: none;
     }
 
     .control {

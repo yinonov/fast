@@ -290,6 +290,8 @@ export class Combobox extends FormAssociatedCombobox {
     // @internal
     formResetCallback: () => void;
     // (undocumented)
+    handleRegionLoaded: (e: Event) => void;
+    // (undocumented)
     handleTextInput(e: InputEvent): void;
     // (undocumented)
     handleTypeAhead: () => undefined;
@@ -302,9 +304,11 @@ export class Combobox extends FormAssociatedCombobox {
     // @internal
     open: boolean;
     // (undocumented)
-    protected openChanged(): void;
+    protected openChanged(oldValue: boolean, newValue: boolean): void;
     position: SelectPosition;
     positionAttribute: SelectPosition;
+    // @internal (undocumented)
+    region: AnchoredRegion;
     role: SelectRole;
     // @internal
     selectedIndexChanged(prev: any, next: any): void;

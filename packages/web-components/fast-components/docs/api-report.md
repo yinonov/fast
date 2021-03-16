@@ -26,6 +26,7 @@ import { Disclosure } from '@microsoft/fast-foundation';
 import { Divider } from '@microsoft/fast-foundation';
 import { Flipper } from '@microsoft/fast-foundation';
 import { GroupType } from '@microsoft/mgt';
+import { HorizontalScroll } from '@microsoft/fast-foundation';
 import { IDynamicPerson } from '@microsoft/mgt';
 import { Listbox } from '@microsoft/fast-foundation';
 import { ListboxOption } from '@microsoft/fast-foundation';

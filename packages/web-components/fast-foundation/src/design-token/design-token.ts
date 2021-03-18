@@ -53,6 +53,11 @@ export interface DesignToken<T> extends CSSDirective {
     readonly cssCustomProperty: string;
 
     /**
+     * The default value, if set. Otherwise undefined.
+     */
+    readonly default: DesignTokenValue<T> | undefined;
+
+    /**
      * Adds the token as a CSS Custom Property to an element
      * @param element - The element to add the CSS Custom Property to
      */
@@ -86,6 +91,13 @@ export interface DesignToken<T> extends CSSDirective {
      * @param element - The element to remove the value from
      */
     deleteValueFor(element: DesignTokenTarget): this;
+
+    /**
+     * Sets the default value for a token
+     */
+    withDefault(value: DesignTokenValue<T>): this;
+
+    createCSS(): string;
 }
 
 interface Disposable {
@@ -101,6 +113,10 @@ class DesignTokenImpl<T> extends CSSDirective implements DesignToken<T> {
         DesignTokenTarget,
         Subscriber & Disposable
     > = new Map();
+    private _default: DesignTokenValue<T> | undefined = undefined;
+    public get default(): DesignTokenValue<T> | undefined {
+        return this._default;
+    }
 
     constructor(public readonly name: string) {
         super();
@@ -175,6 +191,11 @@ class DesignTokenImpl<T> extends CSSDirective implements DesignToken<T> {
 
     public createBehavior() {
         return new DesignTokenBehavior(this);
+    }
+
+    public withDefault(value: DesignTokenValue<T>): this {
+        this._default = value;
+        return this;
     }
 }
 
@@ -254,6 +275,12 @@ class DesignTokenNode<T> {
         if (parent) {
             parent.appendChild(this);
             return parent.value;
+        }
+
+        if (this.token.default) {
+            return DesignTokenNode.isDerivedTokenValue(this.token.default)
+                ? this.token.default(this.target)
+                : this.token.default;
         }
 
         throw new Error(

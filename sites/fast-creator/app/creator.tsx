@@ -101,6 +101,7 @@ class Creator extends Editor<{}, CreatorState> {
 
         const componentLinkedDataId: string = "root";
         const designSystemLinkedDataId: string = "design-system";
+        const dataDictionary: DataDictionary<unknown> = this.getInitialDataDictionary();
 
         this.devices = this.getDevices();
 
@@ -148,15 +149,7 @@ class Creator extends Editor<{}, CreatorState> {
                 },
                 designSystemLinkedDataId,
             ],
-            dataDictionary: [
-                {
-                    [componentLinkedDataId]: {
-                        schemaId: divTag,
-                        data: {},
-                    },
-                },
-                componentLinkedDataId,
-            ],
+            dataDictionary,
             transparentBackground: false,
             lastMappedDataDictionaryToMonacoEditorHTMLValue: "",
         };
@@ -304,6 +297,43 @@ class Creator extends Editor<{}, CreatorState> {
             activeFormId: formId,
         });
     };
+
+    private getInitialDataDictionary(): DataDictionary<unknown> {
+        const componentLinkedDataId: string = "root";
+        const initialDataDictionary: DataDictionary<unknown> = [
+            {
+                [componentLinkedDataId]: {
+                    schemaId: divTag,
+                    data: {},
+                },
+            },
+            componentLinkedDataId,
+        ];
+
+        // If on a data-dictionary route, fetch the data dictionary stored on the server
+        const locationPathname: string = get(this.props, "location.pathname", "");
+
+        if (locationPathname.startsWith("/data-dictionary/")) {
+            (async () => {
+                const rawResponse = await fetch(
+                    `/api/data-dictionary/${(this.props as any).match.params.key}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+
+                this.setState({
+                    dataDictionary: await rawResponse.json(),
+                });
+            })();
+        }
+
+        return initialDataDictionary;
+    }
 
     private handleAddLinkedData = (onChange): ((e: ControlOnChangeConfig) => void) => {
         return (e: ControlOnChangeConfig): void => {

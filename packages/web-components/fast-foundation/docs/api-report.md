@@ -477,6 +477,15 @@ export function createDataGridTemplate(prefix: string): ViewTemplate;
 // @public
 export function createMenuItemTemplate(prefix: string): ViewTemplate;
 
+// @public (undocumented)
+export function createPickerListTemplate(prefix: string): ViewTemplate;
+
+// @public
+export function createPickerMenuTemplate(prefix: string): ViewTemplate;
+
+// @public
+export function createPickerTemplate(prefix: string, subtype: string, itemTemplate: ViewTemplate, optionTemplate: ViewTemplate): ViewTemplate;
+
 // @public
 export function createTooltipTemplate(prefix: string): ViewTemplate;
 
@@ -1304,64 +1313,6 @@ export enum ListboxRole {
 export const ListboxTemplate: ViewTemplate<Listbox>;
 
 // @public
-export class ListPicker extends FASTElement {
-    // (undocumented)
-    availableOptions: string[];
-    // @internal (undocumented)
-    connectedCallback(): void;
-    // @internal (undocumented)
-    defaultItemTemplate: ViewTemplate;
-    // @internal (undocumented)
-    defaultOptionTemplate: ViewTemplate;
-    // (undocumented)
-    defaultSelection: string;
-    // @internal
-    generatedOptionElements: HTMLElement[];
-    // (undocumented)
-    handleFocusOut: (e: FocusEvent) => void;
-    // (undocumented)
-    handleInputKeyDown: (e: KeyboardEvent) => boolean;
-    // (undocumented)
-    handleOptionClick: (e: MouseEvent) => boolean;
-    // (undocumented)
-    handleRegionLoaded: (e: Event) => void;
-    // (undocumented)
-    handleTextInput: (e: InputEvent) => boolean;
-    // @internal
-    inputBox: HTMLElement;
-    // @internal (undocumented)
-    itemTemplate: ViewTemplate;
-    // @internal
-    listbox: HTMLElement;
-    // @internal (undocumented)
-    listboxFocusIndex: number;
-    // @internal (undocumented)
-    listboxFocusOptionId: string | null;
-    // @internal (undocumented)
-    listboxId: string;
-    // @internal (undocumented)
-    listboxOpen: boolean;
-    // (undocumented)
-    options: string;
-    // @internal (undocumented)
-    optionTemplate: ViewTemplate;
-    // @internal
-    postOptionRegion: HTMLElement;
-    // @internal
-    preOptionRegion: HTMLElement;
-    // @internal (undocumented)
-    region: AnchoredRegion;
-    // (undocumented)
-    selectedOptions: string[];
-    // (undocumented)
-    selection: string;
-    // @internal (undocumented)
-    slottedPostOptions: HTMLElement[];
-    // @internal (undocumented)
-    slottedPreOptions: HTMLElement[];
-    }
-
-// @public
 export abstract class MatchMediaBehavior implements Behavior {
     constructor(query: MediaQueryList);
     bind(source: typeof FASTElement & HTMLElement): void;
@@ -1516,6 +1467,135 @@ export type OverrideFoundationElementDefinition<T extends FoundationElementDefin
 
 // @alpha (undocumented)
 export type ParentLocator = (owner: any) => Container | null;
+
+// @public
+export class Picker extends FASTElement {
+    autoUpdateInterval: number;
+    // Warning: (ae-incompatible-release-tags) The symbol "autoUpdateMode" is marked as @public, but its signature references "AutoUpdateMode" which is marked as @beta
+    //
+    // (undocumented)
+    autoUpdateMode: AutoUpdateMode;
+    // @internal (undocumented)
+    connectedCallback(): void;
+    // (undocumented)
+    defaultItemTemplate: ViewTemplate;
+    // @internal (undocumented)
+    defaultOptionTemplate: ViewTemplate;
+    // (undocumented)
+    defaultSelection: string;
+    // (undocumented)
+    disconnectedCallback(): void;
+    fixedPlacement: boolean;
+    // (undocumented)
+    handleFocusIn: (e: FocusEvent) => boolean;
+    // (undocumented)
+    handleFocusOut: (e: FocusEvent) => boolean;
+    // (undocumented)
+    protected handleInputClick: (e: MouseEvent) => void;
+    // (undocumented)
+    handleItemClick: (e: MouseEvent, itemIndex: number) => boolean;
+    // (undocumented)
+    handleItemKeyDown: (e: KeyboardEvent, itemIndex: number) => boolean;
+    // (undocumented)
+    handleKeyDown: (e: KeyboardEvent) => boolean;
+    // (undocumented)
+    handleOptionClick: (e: MouseEvent, value: string) => boolean;
+    // (undocumented)
+    handleRegionLoaded: (e: Event) => void;
+    // (undocumented)
+    protected handleSelectionChange(): void;
+    // (undocumented)
+    protected handleTextInput(e: InputEvent): void;
+    // (undocumented)
+    protected hasFocus: boolean;
+    // @internal
+    inputElement: HTMLInputElement;
+    // (undocumented)
+    itemTemplate: ViewTemplate;
+    // (undocumented)
+    loadingText: string;
+    // (undocumented)
+    maxSelected: number | undefined;
+    // @internal
+    menuElement: PickerMenu;
+    // @internal (undocumented)
+    menuFocusIndex: number;
+    // @internal (undocumented)
+    menuFocusOptionId: string | null;
+    // @internal (undocumented)
+    menuId: string;
+    // @internal (undocumented)
+    menuOpen: boolean;
+    // (undocumented)
+    menuPosition: PickerMenuPosition;
+    // (undocumented)
+    noSuggestionsText: string;
+    // (undocumented)
+    options: string;
+    // (undocumented)
+    optionsList: string[];
+    // @internal (undocumented)
+    optionTemplate: ViewTemplate;
+    // @internal (undocumented)
+    pickermenutag: string;
+    // @internal (undocumented)
+    region: AnchoredRegion;
+    // @internal
+    selectedList: HTMLElement;
+    // @internal (undocumented)
+    selectedlisttag: string;
+    // @internal (undocumented)
+    selectedOptions: string[];
+    // (undocumented)
+    selection: string;
+    // @internal (undocumented)
+    showLoading: boolean;
+    // @internal (undocumented)
+    showNoOptions: boolean;
+    // (undocumented)
+    suggestionsAvailableText: string;
+    // (undocumented)
+    protected toggleMenu(open: boolean): void;
+    // (undocumented)
+    updatePosition: () => void;
+}
+
+// @public
+export class PickerList extends FASTElement {
+}
+
+// @public
+export class PickerMenu extends FASTElement {
+    // @internal (undocumented)
+    connectedCallback(): void;
+    // @internal (undocumented)
+    footerElements: HTMLElement[];
+    // (undocumented)
+    footerElementsChanged(): void;
+    // @internal (undocumented)
+    headerElements: HTMLElement[];
+    // (undocumented)
+    headerElementsChanged(): void;
+    // (undocumented)
+    loadingText: string;
+    // @internal (undocumented)
+    menuElements: HTMLElement[];
+    // (undocumented)
+    menuElementsChanged(): void;
+    // (undocumented)
+    noSuggestionsText: string;
+    // @internal
+    optionElements: HTMLElement[];
+    // (undocumented)
+    showLoading: boolean;
+    // (undocumented)
+    showNoOptions: boolean;
+    // (undocumented)
+    suggestionsAvailableText: string;
+    }
+
+// @public (undocumented)
+export type PickerMenuPosition = "top" | "bottom" | "dynamic";
 
 // @public
 export const ProgressRingTemplate: ViewTemplate<BaseProgress>;

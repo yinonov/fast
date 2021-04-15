@@ -111,7 +111,6 @@ export class AnchoredRegion extends FoundationElement {
     // @internal
     initialLayoutComplete: boolean;
     update: () => void;
-    updateAnchorOffset: (horizontalOffsetDelta: number, verticalOffsetDelta: number) => void;
     verticalDefaultPosition: VerticalPosition;
     verticalInset: boolean;
     // Warning: (ae-forgotten-export) The symbol "AnchoredRegionVerticalPositionLabel" needs to be exported by the entry point index.d.ts

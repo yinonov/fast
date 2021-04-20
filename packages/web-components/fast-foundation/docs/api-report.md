@@ -103,8 +103,7 @@ export class AnchoredRegion extends FoundationElement {
     fixedPlacement: boolean;
     horizontalDefaultPosition: HorizontalPosition;
     horizontalInset: boolean;
-    // Warning: (ae-forgotten-export) The symbol "AnchoredRegionHorizontalPositionLabel" needs to be exported by the entry point index.d.ts
-    horizontalPosition: AnchoredRegionHorizontalPositionLabel;
+    horizontalPosition: AnchoredRegionPositionLabel;
     horizontalPositioningMode: AxisPositioningMode;
     horizontalScaling: AxisScalingMode;
     horizontalThreshold: number;
@@ -113,8 +112,8 @@ export class AnchoredRegion extends FoundationElement {
     update: () => void;
     verticalDefaultPosition: VerticalPosition;
     verticalInset: boolean;
-    // Warning: (ae-forgotten-export) The symbol "AnchoredRegionVerticalPositionLabel" needs to be exported by the entry point index.d.ts
-    verticalPosition: AnchoredRegionVerticalPositionLabel;
+    // Warning: (ae-forgotten-export) The symbol "AnchoredRegionPositionLabel" needs to be exported by the entry point index.d.ts
+    verticalPosition: AnchoredRegionPositionLabel;
     verticalPositioningMode: AxisPositioningMode;
     verticalScaling: AxisScalingMode;
     verticalThreshold: number;

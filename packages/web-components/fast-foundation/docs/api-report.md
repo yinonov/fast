@@ -107,6 +107,7 @@ export class AnchoredRegion extends FoundationElement {
     horizontalPositioningMode: AxisPositioningMode;
     horizontalScaling: AxisScalingMode;
     horizontalThreshold: number;
+    horizontalViewportLock: boolean;
     // @internal
     initialLayoutComplete: boolean;
     update: () => void;
@@ -116,6 +117,7 @@ export class AnchoredRegion extends FoundationElement {
     verticalPositioningMode: AxisPositioningMode;
     verticalScaling: AxisScalingMode;
     verticalThreshold: number;
+    verticalViewportLock: boolean;
     viewport: string;
     viewportElement: HTMLElement | null;
     }

@@ -117,6 +117,48 @@ export class AnchoredRegion extends FASTElement {
     viewportElement: HTMLElement | null;
     }
 
+// @public
+export interface AnchoredRegionConfig {
+    // Warning: (ae-incompatible-release-tags) The symbol "autoUpdateMode" is marked as @public, but its signature references "AutoUpdateMode" which is marked as @beta
+    //
+    // (undocumented)
+    autoUpdateMode?: AutoUpdateMode;
+    // (undocumented)
+    fixedPlacement?: boolean;
+    // Warning: (ae-incompatible-release-tags) The symbol "horizontalDefaultPosition" is marked as @public, but its signature references "HorizontalPosition" which is marked as @beta
+    //
+    // (undocumented)
+    horizontalDefaultPosition?: HorizontalPosition;
+    // (undocumented)
+    horizontalInset: boolean;
+    // Warning: (ae-incompatible-release-tags) The symbol "horizontalPositioningMode" is marked as @public, but its signature references "AxisPositioningMode" which is marked as @beta
+    //
+    // (undocumented)
+    horizontalPositioningMode: AxisPositioningMode;
+    // Warning: (ae-incompatible-release-tags) The symbol "horizontalScaling" is marked as @public, but its signature references "AxisScalingMode" which is marked as @beta
+    //
+    // (undocumented)
+    horizontalScaling: AxisScalingMode;
+    // (undocumented)
+    horizontalThreshold?: number;
+    // Warning: (ae-incompatible-release-tags) The symbol "verticalDefaultPosition" is marked as @public, but its signature references "VerticalPosition" which is marked as @beta
+    //
+    // (undocumented)
+    verticalDefaultPosition?: VerticalPosition;
+    // (undocumented)
+    verticalInset: boolean;
+    // Warning: (ae-incompatible-release-tags) The symbol "verticalPositioningMode" is marked as @public, but its signature references "AxisPositioningMode" which is marked as @beta
+    //
+    // (undocumented)
+    verticalPositioningMode: AxisPositioningMode;
+    // Warning: (ae-incompatible-release-tags) The symbol "verticalScaling" is marked as @public, but its signature references "AxisScalingMode" which is marked as @beta
+    //
+    // (undocumented)
+    verticalScaling: AxisScalingMode;
+    // (undocumented)
+    verticalThreshold?: number;
+}
+
 // @beta
 export const AnchoredRegionTemplate: ViewTemplate<AnchoredRegion>;
 
@@ -943,6 +985,15 @@ export interface DOMParentLocatorEventDetail {
     container: Container | void;
 }
 
+// @public
+export const dropDownLeft: AnchoredRegionConfig;
+
+// @public
+export const dropDownLeftOrRight: AnchoredRegionConfig;
+
+// @public
+export const dropDownRight: AnchoredRegionConfig;
+
 // @alpha
 export type ElementDefinitionCallback = (ctx: ElementDefinitionContext) => void;
 
@@ -1008,6 +1059,27 @@ export enum FlipperDirection {
 
 // @public
 export const FlipperTemplate: ViewTemplate<Flipper>;
+
+// @public
+export const flyoutAbove: AnchoredRegionConfig;
+
+// @public
+export const flyoutAboveOrBelow: AnchoredRegionConfig;
+
+// @public
+export const flyoutBelow: AnchoredRegionConfig;
+
+// @public
+export const flyoutBelowScaling: AnchoredRegionConfig;
+
+// @public
+export const flyoutLeft: AnchoredRegionConfig;
+
+// @public
+export const flyoutLeftOrRight: AnchoredRegionConfig;
+
+// @public
+export const flyoutRight: AnchoredRegionConfig;
 
 // @public
 export const focusVisible: string;
@@ -1470,10 +1542,6 @@ export type ParentLocator = (owner: any) => Container | null;
 
 // @public
 export class Picker extends FASTElement {
-    // Warning: (ae-incompatible-release-tags) The symbol "autoUpdateMode" is marked as @public, but its signature references "AutoUpdateMode" which is marked as @beta
-    //
-    // (undocumented)
-    autoUpdateMode: AutoUpdateMode;
     // @internal (undocumented)
     connectedCallback(): void;
     // (undocumented)
@@ -1484,9 +1552,6 @@ export class Picker extends FASTElement {
     defaultSelection: string;
     // (undocumented)
     disconnectedCallback(): void;
-    // (undocumented)
-    dynamicMenuPositioning: boolean;
-    fixedPlacement: boolean;
     // (undocumented)
     handleClick: (e: MouseEvent) => boolean;
     // (undocumented)
@@ -1519,6 +1584,8 @@ export class Picker extends FASTElement {
     loadingText: string;
     // (undocumented)
     maxSelected: number | undefined;
+    // (undocumented)
+    menuConfig: AnchoredRegionConfig;
     // @internal
     menuElement: PickerMenu;
     // @internal (undocumented)
@@ -1529,9 +1596,6 @@ export class Picker extends FASTElement {
     menuId: string;
     // @internal (undocumented)
     menuOpen: boolean;
-    // (undocumented)
-    menuPosition: PickerMenuPosition;
-    menuVerticalThreshold: number;
     // (undocumented)
     noSuggestionsText: string;
     // (undocumented)

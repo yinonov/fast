@@ -1544,11 +1544,8 @@ export type ParentLocator = (owner: any) => Container | null;
 export class Picker extends FASTElement {
     // @internal (undocumented)
     connectedCallback(): void;
-    // (undocumented)
     defaultItemTemplate: ViewTemplate;
-    // @internal (undocumented)
     defaultOptionTemplate: ViewTemplate;
-    // (undocumented)
     defaultSelection: string;
     // (undocumented)
     disconnectedCallback(): void;
@@ -1578,13 +1575,11 @@ export class Picker extends FASTElement {
     protected hasFocus: boolean;
     // @internal
     inputElement: HTMLInputElement;
-    // (undocumented)
     itemTemplate: ViewTemplate;
-    // (undocumented)
+    label: string;
+    labelledby: string;
     loadingText: string;
-    // (undocumented)
     maxSelected: number | undefined;
-    // (undocumented)
     menuConfig: AnchoredRegionConfig;
     // @internal
     menuElement: PickerMenu;
@@ -1596,13 +1591,10 @@ export class Picker extends FASTElement {
     menuId: string;
     // @internal (undocumented)
     menuOpen: boolean;
-    // (undocumented)
     noSuggestionsText: string;
-    // (undocumented)
     options: string;
-    // (undocumented)
-    optionsList: string[];
     // @internal (undocumented)
+    optionsList: string[];
     optionTemplate: ViewTemplate;
     // @internal (undocumented)
     pickermenutag: string;
@@ -1614,13 +1606,11 @@ export class Picker extends FASTElement {
     selectedlisttag: string;
     // @internal (undocumented)
     selectedOptions: string[];
-    // (undocumented)
     selection: string;
     // @internal (undocumented)
     showLoading: boolean;
     // @internal (undocumented)
     showNoOptions: boolean;
-    // (undocumented)
     suggestionsAvailableText: string;
     // (undocumented)
     protected toggleMenu(open: boolean): void;

@@ -1549,6 +1549,8 @@ export class Picker extends FASTElement {
     defaultSelection: string;
     // (undocumented)
     disconnectedCallback(): void;
+    // @internal (undocumented)
+    flyoutOpen: boolean;
     // (undocumented)
     handleClick: (e: MouseEvent) => boolean;
     // (undocumented)
@@ -1589,8 +1591,6 @@ export class Picker extends FASTElement {
     menuFocusOptionId: string | null;
     // @internal (undocumented)
     menuId: string;
-    // @internal (undocumented)
-    menuOpen: boolean;
     noSuggestionsText: string;
     options: string;
     // @internal (undocumented)
@@ -1634,20 +1634,12 @@ export class PickerMenu extends FASTElement {
     headerElements: HTMLElement[];
     // (undocumented)
     headerElementsChanged(): void;
-    // (undocumented)
-    loadingText: string;
     // @internal (undocumented)
     menuElements: HTMLElement[];
     // (undocumented)
     menuElementsChanged(): void;
-    // (undocumented)
-    noSuggestionsText: string;
     // @internal
     optionElements: HTMLElement[];
-    // (undocumented)
-    showLoading: boolean;
-    // (undocumented)
-    showNoOptions: boolean;
     // (undocumented)
     suggestionsAvailableText: string;
     }

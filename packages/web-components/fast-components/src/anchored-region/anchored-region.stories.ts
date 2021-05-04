@@ -81,6 +81,26 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
             });
 
         document
+            .getElementById("toggle-inset-vertical")!
+            .addEventListener("click", (e: MouseEvent) => {
+                if (togglesRegion?.getAttribute("vertical-inset") === "true") {
+                    togglesRegion!.setAttribute("vertical-inset", "false");
+                } else {
+                    togglesRegion!.setAttribute("vertical-inset", "true");
+                }
+            });
+
+        document
+            .getElementById("toggle-inset-horizontal")!
+            .addEventListener("click", (e: MouseEvent) => {
+                if (togglesRegion?.getAttribute("horizontal-inset") === "true") {
+                    togglesRegion!.setAttribute("horizontal-inset", "false");
+                } else {
+                    togglesRegion!.setAttribute("horizontal-inset", "true");
+                }
+            });
+
+        document
             .querySelectorAll("[id^=anchor-menu-many]")
             .forEach((el: HTMLButtonElement) => {
                 el.addEventListener("click", (e: MouseEvent) => {
@@ -95,22 +115,6 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
                     }
                 });
             });
-
-        // document.getElementById("toggle-inset-vertical")!.addEventListener("click", (e: MouseEvent) => {
-        //     if ((togglesRegion as FASTAnchoredRegion)!.verticalInset === true){
-        //         (togglesRegion as FASTAnchoredRegion)!.verticalInset = false;
-        //     } else {
-        //         (togglesRegion as FASTAnchoredRegion)!.verticalInset = true;
-        //     }
-        // });
-
-        // document.getElementById("toggle-inset-horizontal")!.addEventListener("click", (e: MouseEvent) => {
-        //     if ((togglesRegion as FASTAnchoredRegion)!.horizontalInset === true){
-        //         (togglesRegion as FASTAnchoredRegion)!.horizontalInset = false;
-        //     } else {
-        //         (togglesRegion as FASTAnchoredRegion)!.horizontalInset = true;
-        //     }
-        // });
     }
 });
 

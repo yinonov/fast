@@ -20,9 +20,9 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
         // header region
         const headerFixedButton = document.getElementById("anchor-header-menu-fixed");
         headerFixedButton?.addEventListener("click", (e: MouseEvent) => {
-            const menu: FASTAnchoredRegion = document.getElementById(
+            const menu: FoundationAnchoredRegion = document.getElementById(
                 "header-menu-fixed"
-            ) as FASTAnchoredRegion;
+            ) as FoundationAnchoredRegion;
             if (menu.style.display === "none") {
                 menu.style.display = "";
             } else {
@@ -32,9 +32,9 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
 
         const headerScalingButton = document.getElementById("anchor-header-menu-scaling");
         headerScalingButton?.addEventListener("click", (e: MouseEvent) => {
-            const menu: FASTAnchoredRegion = document.getElementById(
+            const menu: FoundationAnchoredRegion = document.getElementById(
                 "header-menu-scaling"
-            ) as FASTAnchoredRegion;
+            ) as FoundationAnchoredRegion;
             if (menu.style.display === "none") {
                 menu.style.display = "";
             } else {
@@ -44,7 +44,7 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
 
         const regionScalingUpdate = document.getElementById(
             "region-upd1"
-        ) as FASTAnchoredRegion;
+        ) as FoundationAnchoredRegion;
         document
             .getElementById("viewport-upd1")!
             .addEventListener("scroll", () => regionScalingUpdate.update());
@@ -85,9 +85,9 @@ addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
             .forEach((el: HTMLButtonElement) => {
                 el.addEventListener("click", (e: MouseEvent) => {
                     const menuNum = el.id.substr(16, el.id.length - 16);
-                    const menu: FASTAnchoredRegion = document.getElementById(
+                    const menu: FoundationAnchoredRegion = document.getElementById(
                         `menu-many${menuNum}`
-                    ) as FASTAnchoredRegion;
+                    ) as FoundationAnchoredRegion;
                     if (menu.style.display === "none") {
                         menu.style.display = "";
                     } else {

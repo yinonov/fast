@@ -126,7 +126,7 @@ export class AnchoredRegion extends FoundationElement {
 export type AnchoredRegionPositionLabel = "start" | "insetStart" | "insetEnd" | "end";
 
 // @beta
-export const AnchoredRegionTemplate: ViewTemplate<AnchoredRegion>;
+export const anchoredRegionTemplate: (context: any, definition: any) => ViewTemplate<AnchoredRegion>;
 
 // @public
 export const anchorTemplate: (context: any, definition: any) => ViewTemplate<Anchor>;

@@ -1570,7 +1570,7 @@ export class Picker extends FASTElement {
     // (undocumented)
     handleRegionLoaded: (e: Event) => void;
     // (undocumented)
-    protected handleSelectionChange(): void;
+    handleSelectionChange(): void;
     // (undocumented)
     protected handleTextInput(e: InputEvent): void;
     // (undocumented)
@@ -1613,7 +1613,7 @@ export class Picker extends FASTElement {
     showNoOptions: boolean;
     suggestionsAvailableText: string;
     // (undocumented)
-    protected toggleMenu(open: boolean): void;
+    protected toggleFlyout(open: boolean): void;
     // (undocumented)
     updatePosition: () => void;
 }

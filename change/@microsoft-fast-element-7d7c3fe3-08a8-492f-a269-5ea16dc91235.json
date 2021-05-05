@@ -1,7 +1,6 @@
 {
   "type": "minor",
-  "comment": "adding withDefault method to DesignToken",
-  "packageName": "@microsoft/fast-foundation",
+  "packageName": "@microsoft/fast-element",
   "email": "nicholasrice@users.noreply.github.com",
   "dependentChangeType": "patch"
 }

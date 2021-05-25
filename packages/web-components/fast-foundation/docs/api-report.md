@@ -569,6 +569,8 @@ export class DataGrid extends FASTElement {
     // @internal (undocumented)
     handleRowFocus(e: Event): void;
     headerCellItemTemplate?: ViewTemplate;
+    // (undocumented)
+    noTabbing: boolean;
     // @internal
     prefix: string;
     // @internal
